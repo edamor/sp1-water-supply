@@ -1,10 +1,13 @@
 import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import "./style.css";
 
 export const CustomerPage = () => {
 
   let { activeUser } = useContext(UserContext);
+
+  let history = useHistory();
 
   console.log(activeUser);
 
@@ -46,6 +49,12 @@ export const CustomerPage = () => {
         <button
           className="btn btn-success"
           type="button"
+          onClick={() => {
+            history.push({
+              pathname: "/customer/bills",
+              state: {from: history.location}
+            })
+          }}
         >
           View My Bills
         </button>

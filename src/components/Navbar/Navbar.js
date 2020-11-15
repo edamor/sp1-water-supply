@@ -20,7 +20,7 @@ export const Navbar = () => {
     state: { from: history.location} 
   }
   let customerStatementsTo = {
-    pathname: "/customer/statements",
+    pathname: "/customer/bills",
     state: { from: history.location} 
   }
 

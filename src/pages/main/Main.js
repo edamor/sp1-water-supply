@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { BillProvider } from "../../contexts/BillContext";
+import { CustomerDataContext, CustomerDataProvider } from "../../contexts/CustomerDataContext";
+import { Bills } from "../Bills/Bills";
+import { BillsPage } from "../BillsPage/BillsPage";
 import { CustomerPage } from "../Customer/CustomerPage";
 import { Accounts } from "./Accounts/Accounts";
 import { Home } from "./Home/Home";
@@ -35,11 +39,22 @@ export const Main = () => {
         )
         :
         (
-          <Switch>
-            <Route exact path="/customer">
-              <CustomerPage />
-            </Route>
-          </Switch>
+          <CustomerDataProvider>
+            
+            <BillProvider>
+
+              <Switch>
+                <Route exact path="/customer">
+                  <CustomerPage />
+                </Route>
+                <Route path="/customer/bills">
+                  <BillsPage />
+
+                </Route>
+
+              </Switch>
+            </BillProvider>
+          </CustomerDataProvider>
         )
       }
     </div>
