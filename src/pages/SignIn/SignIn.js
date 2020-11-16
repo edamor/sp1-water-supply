@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import "./style.css";
 import { Admin } from "./roles/Admin";
 import { Customer } from "./roles/Customer";
