@@ -10,12 +10,15 @@ export const RoleFilter = ({children, ...rest}) => {
   let role = localStorage.getItem("role");
 
   console.log("role filter");
+  console.log(role);
 
   useEffect(() => {
     if (role === "admin") {
       history.push("/admin")
-    } else 
+    }
+    if (role === "customer") {
       history.push("/customer")
+    } 
   }, [role, history])
 
   return (

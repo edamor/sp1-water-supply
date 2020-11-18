@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
-import { FakeAuth } from "../../../FakeAuth";
+import { tokenParser } from "../../../utils/TokenParser";
 
+const CUSTOMER_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/customers/login";
 
 export const Customer = () => {
   let history = useHistory();
@@ -18,17 +19,62 @@ export const Customer = () => {
     setPassword(e.target.value.trim())
   };
 
-  let { setActiveUser } = useContext(UserContext);
+  const { setActiveUser } = useContext(UserContext);
 
-  const handleSubmit = () => {
-    FakeAuth().then(data => {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.user.role);
-      setActiveUser(data.user);
-      history.push("/");
+  let [loading, setLoading] = useState(false);
+
+  const doCustomerLogin = () => {
+    setLoading(true);
+    let user = {
+      username: accountNo,
+      password: password
+    }
+    fetch(CUSTOMER_LOGIN_URI, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(user)
     })
-    console.log(accountNo)
-    console.log(password)
+    .then(response => response.text())
+    .then(token => {
+      console.log(token);
+      if (token === "Invalid Username" || token === "Incorrect Password") {
+        alert(token)
+      } else {
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", tokenParser(token).role);
+        setActiveUser(tokenParser(token).account);
+        history.push("/");
+        
+      }
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
+
+  const loadingButton = () => {
+    if (!loading) {
+      return (
+        <button
+          type="button"
+          className="btn btn-primary w-100"
+          onClick={doCustomerLogin}
+        >
+          <span>Login</span>
+        </button>
+      )
+    } else return (
+      <button
+          type="button"
+          className="btn btn-primary w-100"
+          disabled={loading}
+        >
+          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span className="visually-hidden">Loading...</span>
+        </button>
+    )
   }
 
   return (
@@ -65,13 +111,7 @@ export const Customer = () => {
         />
       </div>
       <div className="col-12 mb-3 pt-2">
-        <button
-          type="button"
-          className="btn btn-primary w-100"
-          onClick={handleSubmit}
-        >
-          Sign In
-        </button>
+        {loadingButton()}
       </div>
 
     </div>
