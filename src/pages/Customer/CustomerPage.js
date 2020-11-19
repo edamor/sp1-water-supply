@@ -24,21 +24,20 @@ export const CustomerPage = () => {
           <div className="spinner-grow" style={{
             "width": "2.5rem",
             "height" : "2.5rem",
-            transitionDelay: "0.2s"
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
           <div className="spinner-grow mx-3" style={{
             "width": "3rem",
             "height" : "3rem",
-            transitionDelay: "0.6"
+            transitionDelay: "0.75s"
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
           <div className="spinner-grow" style={{
             "width": "2.5rem",
             "height" : "2.5rem",
-            transitionDelay: "1s"
+            transitionDelay: "1.5s"
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
