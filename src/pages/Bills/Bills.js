@@ -33,7 +33,7 @@ export const Bills = () => {
   let [selectedYear, setSelectedYear] = useState(1577808000000);
 
   const handleViewBill = (billNo) => {
-    let viewThis = data.find(item => item.billNo === parseInt(billNo));
+    let viewThis = data.find(item => item.billNumber === parseInt(billNo));
     setBillOnDisplay(viewThis);
     history.push({
       pathname: `/customer/bills/${billNo}`,

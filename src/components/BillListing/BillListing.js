@@ -6,7 +6,7 @@ export const BillListing = ({bills, filter, viewBill}) => {
   
 
   let results = bills
-    .sort((a,b) => b.billNumber - a.bullNumber)
+    .sort((a,b) => b.billNumber - a.billNumber)
     .filter(item => (item.periodTo > parseInt(filter) && item.periodTo < parseInt(filter+yearStep)));
 
 
