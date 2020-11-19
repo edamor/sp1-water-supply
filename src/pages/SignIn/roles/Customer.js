@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
 import { tokenParser } from "../../../utils/TokenParser";
 
-const CUSTOMER_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/customers/login";
+const CUSTOMER_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/customer/login";
 
 export const Customer = () => {
   let history = useHistory();
