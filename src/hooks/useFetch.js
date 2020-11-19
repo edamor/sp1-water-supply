@@ -10,12 +10,11 @@ export const useFetch = ({endpoint, token}) => {
       method: "GET",
       headers: {
         "x-auth-token": token
-      }
+        }
     })
     .then(response => response.text())
     .then(x => {
       setState({data: JSON.parse(x), loading: false});
-      console.log("NAG FETCH!");
     })
     .catch(e => {
       alert(e)

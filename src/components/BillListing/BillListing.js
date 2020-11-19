@@ -3,11 +3,16 @@
 export const BillListing = ({bills, filter, viewBill}) => {
 
   let yearStep = 31556952000;
+  const years = {
+    year2020: 1577808000000,
+    year2019: 1546272000000
+  }
+  let yearFilter = "year"+filter;
   
 
   let results = bills
     .sort((a,b) => b.billNumber - a.billNumber)
-    .filter(item => (item.periodTo > parseInt(filter) && item.periodTo < parseInt(filter+yearStep)));
+    .filter(item => ((item.periodTo - years[yearFilter]) < yearStep));
 
 
   
