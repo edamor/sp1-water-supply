@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
 import { tokenParser } from "../../../utils/TokenParser";
@@ -8,8 +8,14 @@ const CUSTOMER_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/customers/
 export const Customer = () => {
   let history = useHistory();
 
+  let accountNoRef = useRef(true);
+  let passwordRef = useRef(true);
+
   let [accountNo, setAccountNo] = useState("");
   let [password, setPassword] = useState("");
+
+  console.log(accountNoRef.current.value);
+  console.log(passwordRef.current.value);
 
   const handleAccountNo = (e) => {
     setAccountNo(e.target.value.trim())
@@ -40,7 +46,10 @@ export const Customer = () => {
     .then(token => {
       console.log(token);
       if (token === "Invalid Username" || token === "Incorrect Password") {
-        alert(token)
+        alert(token);
+        setLoading(false);
+        accountNoRef.current.value = "";
+        passwordRef.current.value = "";
       } else {
         localStorage.setItem("token", token);
         localStorage.setItem("role", tokenParser(token).role);
@@ -79,9 +88,6 @@ export const Customer = () => {
 
   return (
     <div className="">
-      {/* <p className="h4 text-center pb-3">
-        Customer
-      </p> */}
       <div className="col-12 mb-4">
         <label 
           htmlFor="accountNumberInput" 
@@ -93,6 +99,7 @@ export const Customer = () => {
           className="form-control" 
           id="accountNumberInput" 
           placeholder="Account No."
+          ref={accountNoRef}
           onChange={handleAccountNo} 
         />
       </div>
@@ -107,6 +114,7 @@ export const Customer = () => {
           className="form-control" 
           id="customerPwInput" 
           placeholder="Password"
+          ref={passwordRef}
           onChange={handlePassword} 
         />
       </div>

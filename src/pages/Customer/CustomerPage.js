@@ -11,7 +11,7 @@ export const CustomerPage = () => {
   const API = `/account-management/accounts/${acctNumber}`;
   const history = useHistory();
   
-  const { data, loading } = useFetch({
+  const { data } = useFetch({
     endpoint: API,
     token: TOKEN 
   })
@@ -22,22 +22,23 @@ export const CustomerPage = () => {
       return (
         <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "300px"}}>
           <div className="spinner-grow" style={{
-            "width": "2.5rem",
-            "height" : "2.5rem",
+            width: "2.5rem",
+            height : "2.5rem",
+            transitionDelay: "0.25s"
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
           <div className="spinner-grow mx-3" style={{
-            "width": "3rem",
-            "height" : "3rem",
-            transitionDelay: "0.75s"
+            width: "3rem",
+            height : "3rem",
+            transitionDelay: "1.25s"
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
           <div className="spinner-grow" style={{
-            "width": "2.5rem",
-            "height" : "2.5rem",
-            transitionDelay: "1.5s"
+            width: "2.5rem",
+            height : "2.5rem",
+            transitionDelay: "2.25s"
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

@@ -27,9 +27,6 @@ export const Admin = () => {
 
   return (
     <div className="">
-      {/* <p className="h4 text-center pb-3">
-        Admin
-      </p> */}
       <div className="col-12 mb-4">
         <label 
           htmlFor="usernameInput" 
