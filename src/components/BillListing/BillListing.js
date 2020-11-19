@@ -1,26 +1,37 @@
+import { useEffect, useState } from "react";
 
 
 export const BillListing = ({bills, filter, viewBill}) => {
 
   let yearStep = 31556952000;
-  const years = {
-    year2020: 1577808000000,
-    year2019: 1546272000000
-  }
-  let yearFilter = "year"+filter;
+  const years = [
+    {name: "2020", value: 1577808000000},
+    {name: "2019", value: 1546272000000}
+  ]
+
+
+
+  let [selectedYear, setSelectedYear] = useState(1577808000000)
+  let [results, setResults] = useState(bills
+    .sort((a,b) => b.billNumber - a.billNumber)
+    .filter(item => ((item.periodTo - selectedYear) < yearStep)))
   
 
-  let results = bills
+  // let results = bills
+  //   .sort((a,b) => b.billNumber - a.billNumber)
+  //   .filter(item => ((item.periodTo - years[yearFilter]) < yearStep));
+
+  useEffect(() => {
+    setResults(bills
     .sort((a,b) => b.billNumber - a.billNumber)
-    .filter(item => ((item.periodTo - years[yearFilter]) < yearStep));
-
-
+    .filter(item => ((item.periodTo - selectedYear) < yearStep)))
+  }, [bills, selectedYear, yearStep])
   
 
   return (
     <div className="list-group">
     
-    <div className="container">
+    <div className="container col-12 col-md-10 mx-auto">
       <table className="table table-hover table-striped text-center">
         <thead>
           <tr>
@@ -28,7 +39,20 @@ export const BillListing = ({bills, filter, viewBill}) => {
             <th scope="col">Period Covered</th>
             <th scope="col">Consumption</th>
             <th scope="col">Amount</th>
-            <th scope="col"></th>
+            <th scope="col">
+              
+              
+              <select 
+                className="form-select form-select-lg mb-3" 
+                aria-label=".form-select-lg example"
+                onChange={(e) => {
+                  setSelectedYear(e.target.value)
+                }}
+              >
+                {years.map(item => <option value={item.value}>{item.name}</option>)}
+              </select>     
+
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -42,7 +66,7 @@ export const BillListing = ({bills, filter, viewBill}) => {
                   <td>
                     {
                       `${new Date(item.periodFrom).toDateString().substring(4,7)}. ${new Date(item.periodFrom).toDateString().substring(8,10)} - 
-                      ${new Date(item.periodTo).toDateString().substring(4,10)}. ${new Date(item.periodTo).toDateString().substring(8,10)}`
+                      ${new Date(item.periodTo).toDateString().substring(4,7)}. ${new Date(item.periodTo).toDateString().substring(8,10)}`
                     }
                   </td>
                   <td>

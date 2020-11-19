@@ -86,7 +86,7 @@ export const Bills = () => {
 
       <div className="row pt-3">
         <div className="col-4 ml-auto">
-        
+{/*         
           <div className="input-group">
             <span className="input-group-text">Year: </span>
             <button id="yearFilter" className="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> {selectedYear} </button>
@@ -110,7 +110,7 @@ export const Bills = () => {
                 </button>
               </li>
             </ul> 
-          </div>
+          </div> */}
         </div>
       </div>
 
