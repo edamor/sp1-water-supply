@@ -30,7 +30,7 @@ export const Bills = () => {
   let {setBillOnDisplay} = useContext(BillContext);
   
 
-  let [selectedYear, setSelectedYear] = useState(data[data.length-1].period.year);
+  let [selectedYear, setSelectedYear] = useState(1577808000000);
 
   const handleViewBill = (billNo) => {
     let viewThis = data.find(item => item.billNo === parseInt(billNo));
