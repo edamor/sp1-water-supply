@@ -22,7 +22,7 @@ export const BillCard = ({bill}) => {
                 <div className="col-12 col-md-2">
                   <div className="d-flex justify-content-between">
                     <p className="h5">Bill No.</p>
-                    <p className="h5 font-weight-normal"> {`${bill.billNo}`} </p>
+                    <p className="h5 font-weight-normal"> {`${bill.billNumber}`} </p>
                   </div>                  
                 </div>
                 <div className="col-12 col-md-5 ml-auto">

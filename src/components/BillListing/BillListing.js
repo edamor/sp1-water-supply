@@ -30,9 +30,9 @@ export const BillListing = ({bills, filter, viewBill}) => {
           {
             (results.length !== 0) ?
               results.map(item => (
-                <tr key={item.bullNumber}>
+                <tr key={item.billNumber}>
                   <th scope="row">
-                    {item.bullNumber}
+                    {item.billNumber}
                   </th>
                   <td>
                     {
