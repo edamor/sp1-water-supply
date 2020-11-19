@@ -21,16 +21,11 @@ export const Bills = () => {
     token: TOKEN 
   });
 
-  
-
-
   let history = useHistory();
 
-
   let {setBillOnDisplay} = useContext(BillContext);
-  
 
-  let [selectedYear, setSelectedYear] = useState(1577808000000);
+  let [selectedYear, setSelectedYear] = useState(2020);
 
   const handleViewBill = (billNo) => {
     let viewThis = data.find(item => item.billNumber === parseInt(billNo));
@@ -39,7 +34,7 @@ export const Bills = () => {
       pathname: `/customer/bills/${billNo}`,
       state: { from: history.location }
     })
-  }
+  };
   
   const showLoadingScreen = (res, year, handle) => {
     if (!res) {
@@ -100,7 +95,7 @@ export const Bills = () => {
                 <button 
                   className="dropdown-item"
                   type="button"
-                  onClick={() => {setSelectedYear(1577808000000)}}
+                  onClick={() => {setSelectedYear(2020)}}
                 >
                   2020
                 </button>
@@ -109,7 +104,7 @@ export const Bills = () => {
                 <button 
                   className="dropdown-item"
                   type="button"
-                  onClick={() => {setSelectedYear(1546272000000)}}
+                  onClick={() => {setSelectedYear(2019)}}
                 >
                   2019
                 </button>

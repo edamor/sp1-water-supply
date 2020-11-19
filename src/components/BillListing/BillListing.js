@@ -41,15 +41,15 @@ export const BillListing = ({bills, filter, viewBill}) => {
                   </th>
                   <td>
                     {
-                      `${new Date(item.periodFrom).toDateString().substring(4,10)} - 
-                      ${new Date(item.periodTo).toDateString().substring(4,10)}`
+                      `${new Date(item.periodFrom).toDateString().substring(4,7)}. ${new Date(item.periodFrom).toDateString().substring(8,10)} - 
+                      ${new Date(item.periodTo).toDateString().substring(4,10)}. ${new Date(item.periodTo).toDateString().substring(8,10)}`
                     }
                   </td>
                   <td>
                     {`${item.cumUsed} Cu. Meters` }
                   </td>
                   <td>
-                    {`PHP ${item.totalAmountDue}` }
+                    {`PHP ${item.totalAmountDue}.00` }
                   </td>
                   <td className="d-flex justify-content-around">
                     <button
