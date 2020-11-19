@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-export const BillListing = ({bills, filter, viewBill}) => {
+export const BillListing = ({bills, viewBill}) => {
 
   let yearStep = 31556952000;
   const years = [
@@ -17,9 +17,6 @@ export const BillListing = ({bills, filter, viewBill}) => {
     .filter(item => ((item.periodTo - selectedYear) < yearStep)))
   
 
-  // let results = bills
-  //   .sort((a,b) => b.billNumber - a.billNumber)
-  //   .filter(item => ((item.periodTo - years[yearFilter]) < yearStep));
 
   useEffect(() => {
     setResults(bills
@@ -43,7 +40,7 @@ export const BillListing = ({bills, filter, viewBill}) => {
               
               
               <select 
-                className="form-select form-select-lg mb-3" 
+                className="form-select" 
                 aria-label=".form-select-lg example"
                 onChange={(e) => {
                   setSelectedYear(e.target.value)
@@ -92,7 +89,7 @@ export const BillListing = ({bills, filter, viewBill}) => {
                 <tr>
                   <td colSpan={5} className="py-4">
                     <em>
-                      No Available Records for {new Date(filter).toDateString()}
+                      No Available Records for {new Date(selectedYear).toDateString()}
                     </em>
                   </td>
                 </tr>

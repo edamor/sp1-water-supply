@@ -25,7 +25,6 @@ export const Bills = () => {
 
   let {setBillOnDisplay} = useContext(BillContext);
 
-  let [selectedYear, setSelectedYear] = useState(2020);
 
   const handleViewBill = (billNo) => {
     let viewThis = data.find(item => item.billNumber === parseInt(billNo));
@@ -66,8 +65,7 @@ export const Bills = () => {
     } else {
       return (
         <BillListing 
-          bills={res} 
-          filter={year} 
+          bills={res}  
           viewBill={handle} 
         />
       ) 
@@ -79,48 +77,14 @@ export const Bills = () => {
 
   return (
     <div className="container pt-2">
-
       <p className="display-5 text-center pt-2">
           My Bills
       </p>
-
-      <div className="row pt-3">
-        <div className="col-4 ml-auto">
-{/*         
-          <div className="input-group">
-            <span className="input-group-text">Year: </span>
-            <button id="yearFilter" className="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> {selectedYear} </button>
-            <ul className="dropdown-menu">
-              <li>
-                <button 
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => {setSelectedYear(2020)}}
-                >
-                  2020
-                </button>
-              </li>
-              <li>
-                <button 
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => {setSelectedYear(2019)}}
-                >
-                  2019
-                </button>
-              </li>
-            </ul> 
-          </div> */}
-        </div>
-      </div>
-
       <div className="row pt-2">
         <div className="col-12 col-md-10 m-auto">
-          {showLoadingScreen(data,selectedYear,handleViewBill)}
+          {showLoadingScreen(data,handleViewBill)}
         </div>
       </div>
-
-      
     </div>
   )
 }
