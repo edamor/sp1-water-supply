@@ -4,8 +4,8 @@ import "./style.css";
 export const BillCard = ({bill}) => {
 
   
-  let from = new Date(bill.period.from).toDateString().substring(4,10);
-  let to = new Date(bill.period.to).toDateString().substring(4,10);
+  let from = new Date(bill.periodFrom).toDateString().substring(4,10);
+  let to = new Date(bill.periodTo).toDateString().substring(4,10);
 
   let history = useHistory();
 
@@ -41,15 +41,15 @@ export const BillCard = ({bill}) => {
                   <p className="h5 text-center">Meter Reading</p>
                   <div className="d-flex justify-content-between my-0 py-0">
                     <p className="font-weight-bold my-0 py-0">Present: </p>
-                    <p className="my-0 py-0"> {bill.reading.present} </p>
+                    <p className="my-0 py-0"> {bill.readingPresent} </p>
                   </div>
                   <div className="d-flex justify-content-between">
                     <p className="font-weight-bold my-0 py-0">Previous: </p>
-                    <p className="my-0 py-0"> {bill.reading.previous} </p>
+                    <p className="my-0 py-0"> {bill.readingPrevious} </p>
                   </div>
                   <div className="d-flex justify-content-between">
-                    <p className="font-weight-bold my-0 py-0">Cu.M Used: </p>
-                    <p className="my-0 py-0"> {bill.consumption.cuMeter} </p>
+                    <p className="font-weight-bold my-0 py-0">Used in Cu. Meters: </p>
+                    <p className="my-0 py-0"> {bill.cumUsed} </p>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export const BillCard = ({bill}) => {
                   </div>
                   <div className="d-flex justify-content-end">
                     <p className="">
-                      {`${ bill.consumption.amount.aboveTenPerCuM}.00`}
+                      {`${ bill.chargePerAboveTen}.00`}
                     </p>
                   </div>
                   <div className="d-flex justify-content-end">
@@ -95,8 +95,7 @@ export const BillCard = ({bill}) => {
                 <div className="col-6 ml-auto d-flex justify-content-between">
                   <p className="h5">Total Amount</p>
                   <p className="h5">
-                    {`PHP ${bill.consumption.amount.zeroToTenCuM + 
-                      bill.consumption.amount.aboveTenPerCuM}.00`}
+                    {`PHP ${bill.totalAmountDue}.00`}
                   </p>
                 </div>
               </div>

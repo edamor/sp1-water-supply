@@ -2,9 +2,12 @@
 
 export const BillListing = ({bills, filter, viewBill}) => {
 
+  let yearStep = 31556952000;
+  
+
   let results = bills
-    .sort((a,b) => b.billNo - a.billNo)
-    .filter(item => item.period.year === parseInt(filter));
+    .sort((a,b) => b.billNumber - a.bullNumber)
+    .filter(item => (item.periodTo > parseInt(filter) && item.periodTo < parseInt(filter+yearStep)));
 
 
   
@@ -27,29 +30,28 @@ export const BillListing = ({bills, filter, viewBill}) => {
           {
             (results.length !== 0) ?
               results.map(item => (
-                <tr key={item.billNo}>
+                <tr key={item.bullNumber}>
                   <th scope="row">
-                    {item.billNo}
+                    {item.bullNumber}
                   </th>
                   <td>
                     {
-                      `${new Date(item.period.from).toDateString().substring(4,10)} - 
-                      ${new Date(item.period.to).toDateString().substring(4,10)}`
+                      `${new Date(item.periodFrom).toDateString().substring(4,10)} - 
+                      ${new Date(item.periodTo).toDateString().substring(4,10)}`
                     }
                   </td>
                   <td>
-                    {`${item.consumption.cuMeter} CU.M` }
+                    {`${item.cumUsed} Cu. Meters` }
                   </td>
                   <td>
-                    {`${item.consumption.amount.currency} 
-                    ${item.consumption.amount.zeroToTenCuM + item.consumption.amount.aboveTenPerCuM}` }
+                    {`PHP ${item.totalAmountDue}` }
                   </td>
                   <td className="d-flex justify-content-around">
                     <button
                       type="button"
                       className="btn btn-sm btn-primary"
                       onClick={(e) => {viewBill(e.target.value)}}
-                      value={item.billNo}
+                      value={item.billNumber}
                     >
                       View Details
                     </button>
@@ -61,7 +63,7 @@ export const BillListing = ({bills, filter, viewBill}) => {
                 <tr>
                   <td colSpan={5} className="py-4">
                     <em>
-                      No Available Records for {filter}
+                      No Available Records for {new Date(filter).toDateString()}
                     </em>
                   </td>
                 </tr>

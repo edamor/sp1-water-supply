@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { BillListing } from "../../components/BillListing/BillListing";
 import { BillContext } from "../../contexts/BillContext";
@@ -13,23 +13,19 @@ import { tokenParser } from "../../utils/TokenParser";
 export const Bills = () => {
   const TOKEN = localStorage.getItem("token");
   const acctNumber = tokenParser(TOKEN).account.accountNumber;
-  const API = `/account-management/accounts/${acctNumber}`;
+  const API = `/bill-management/bills/${acctNumber}`;
   
-  // let { state, setState } = useContext(CustomerDataContext);
 
-  // const { data } = useFetch({
-  //   endpoint: API,
-  //   token: TOKEN 
-  // });
-
-  useFetch({
+  const { data } = useFetch({
     endpoint: API,
     token: TOKEN 
   });
 
+  
+
+
   let history = useHistory();
 
-  let data = useContext(CustomerDataContext);
 
   let {setBillOnDisplay} = useContext(BillContext);
   
@@ -45,7 +41,44 @@ export const Bills = () => {
     })
   }
   
-  
+  const showLoadingScreen = (res, year, handle) => {
+    if (!res) {
+      return (
+        <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "200px"}}>
+          <div className="spinner-grow mx-2" style={{
+            width: "2.5rem",
+            height : "2.5rem",
+            transitionDelay: "0.25s"
+            }} role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <div className="spinner-grow mx-3" style={{
+            width: "3rem",
+            height : "3rem",
+            transitionDelay: "1.25s"
+            }} role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <div className="spinner-grow mx-2" style={{
+            width: "2.5rem",
+            height : "2.5rem",
+            transitionDelay: "2.25s"
+            }} role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <BillListing 
+          bills={res} 
+          filter={year} 
+          viewBill={handle} 
+        />
+      ) 
+    }
+
+  }
 
 
 
@@ -67,7 +100,7 @@ export const Bills = () => {
                 <button 
                   className="dropdown-item"
                   type="button"
-                  onClick={() => {setSelectedYear(2020)}}
+                  onClick={() => {setSelectedYear(1577808000000)}}
                 >
                   2020
                 </button>
@@ -76,7 +109,7 @@ export const Bills = () => {
                 <button 
                   className="dropdown-item"
                   type="button"
-                  onClick={() => {setSelectedYear(2019)}}
+                  onClick={() => {setSelectedYear(1546272000000)}}
                 >
                   2019
                 </button>
@@ -88,7 +121,7 @@ export const Bills = () => {
 
       <div className="row pt-2">
         <div className="col-12 col-md-10 m-auto">
-          <BillListing bills={data} filter={selectedYear} viewBill={handleViewBill} />
+          {showLoadingScreen(data,selectedYear,handleViewBill)}
         </div>
       </div>
 
