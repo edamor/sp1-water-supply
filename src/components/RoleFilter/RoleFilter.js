@@ -15,10 +15,11 @@ export const RoleFilter = ({children, ...rest}) => {
   useEffect(() => {
     if (role === "admin") {
       history.push("/admin")
-    }
-    if (role === "customer") {
+    } else if (role === "customer") {
       history.push("/customer")
-    } 
+    } else {
+      history.push("/login")
+    }
   }, [role, history])
 
   return (

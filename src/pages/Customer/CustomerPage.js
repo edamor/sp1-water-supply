@@ -20,7 +20,7 @@ export const CustomerPage = () => {
   const showLoadingScreen = () => {
     if (!data) {
       return (
-        <div className="d-flex w-100 bg-success align-items-center justify-content-center" style={{"height": "300px"}}>
+        <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "300px"}}>
           <div className="spinner-grow" style={{
             "width": "2.5rem",
             "height" : "2.5rem",
