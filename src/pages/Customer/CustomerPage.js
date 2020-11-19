@@ -6,22 +6,23 @@ import "./style.css";
 
 export const CustomerPage = () => {
   const TOKEN = localStorage.getItem("token");
-  const acctNumber = tokenParser(TOKEN).account.accountNumber
-  console.log(acctNumber);
+  const acctNumber = tokenParser(TOKEN).account.accountNumber;
   const API = `/account-management/accounts/${acctNumber}`;
   const history = useHistory();
   
   const { data } = useFetch({
     endpoint: API,
     token: TOKEN 
-  })
+  });
+
+
 
   
-  const showLoadingScreen = () => {
-    if (!data) {
+  const showLoadingScreen = (res) => {
+    if (!res) {
       return (
         <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "300px"}}>
-          <div className="spinner-grow" style={{
+          <div className="spinner-grow mx-2" style={{
             width: "2.5rem",
             height : "2.5rem",
             transitionDelay: "0.25s"
@@ -35,7 +36,7 @@ export const CustomerPage = () => {
             }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
-          <div className="spinner-grow" style={{
+          <div className="spinner-grow mx-2" style={{
             width: "2.5rem",
             height : "2.5rem",
             transitionDelay: "2.25s"
@@ -87,7 +88,7 @@ export const CustomerPage = () => {
         </div>
       </div>
 
-      {showLoadingScreen()}
+      {showLoadingScreen(data)}
 
       <hr />
 

@@ -5,6 +5,7 @@ const DOMAIN = "https://sp1-blue-sparrow.herokuapp.com/api/v1";
 export const useFetch = ({endpoint, token}) => {
   const [state, setState] = useState({data: null, loading: true});
   useEffect(() => {
+    console.log("NAG FETCH!");
     setState({data: null, loading: true});
     fetch(DOMAIN + endpoint, {
       method: "GET",
@@ -20,6 +21,7 @@ export const useFetch = ({endpoint, token}) => {
       alert(e)
     })
   }, [endpoint, token]);
+
 
   return state;
 }

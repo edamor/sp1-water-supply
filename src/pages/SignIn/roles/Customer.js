@@ -14,8 +14,6 @@ export const Customer = () => {
   let [accountNo, setAccountNo] = useState("");
   let [password, setPassword] = useState("");
 
-  console.log(accountNoRef.current.value);
-  console.log(passwordRef.current.value);
 
   const handleAccountNo = (e) => {
     setAccountNo(e.target.value.trim())
@@ -60,6 +58,8 @@ export const Customer = () => {
     })
     .catch(e => {
       console.log(e);
+      alert("Something went wrong...");
+      setLoading(false);
     })
   }
 

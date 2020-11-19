@@ -3,12 +3,29 @@ import { useHistory } from "react-router-dom";
 import { BillListing } from "../../components/BillListing/BillListing";
 import { BillContext } from "../../contexts/BillContext";
 import { CustomerDataContext } from "../../contexts/CustomerDataContext";
+import { useFetch } from "../../hooks/useFetch";
+import { tokenParser } from "../../utils/TokenParser";
 
   
 
 
 
 export const Bills = () => {
+  const TOKEN = localStorage.getItem("token");
+  const acctNumber = tokenParser(TOKEN).account.accountNumber;
+  const API = `/account-management/accounts/${acctNumber}`;
+  
+  // let { state, setState } = useContext(CustomerDataContext);
+
+  // const { data } = useFetch({
+  //   endpoint: API,
+  //   token: TOKEN 
+  // });
+
+  useFetch({
+    endpoint: API,
+    token: TOKEN 
+  });
 
   let history = useHistory();
 
