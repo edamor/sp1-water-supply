@@ -81,14 +81,17 @@ export const Admin = () => {
     )
   };
 
+  
+  function onEnter(e) {
+    console.log(e);
+  }
 
   useEffect(() => {
-    function onEnter(e) {
-      console.log(e);
-    }
     window.addEventListener("keypress", onEnter)
 
-    return window.removeEventListener("keypress", onEnter);
+    return () => {
+      window.removeEventListener("keypress", onEnter)
+    };
   })
 
 
