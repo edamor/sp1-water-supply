@@ -52,7 +52,7 @@ export const CreateAccount = () => {
       label: "Full Name",
       placeholder: "ex. Juan Santos",
       type: "text",
-      className: "col-md-6",
+      className: "col-md-7",
       ref: fullNameRef
     },
     {
@@ -60,7 +60,7 @@ export const CreateAccount = () => {
       label: "Mobile No.",
       placeholder: "ex. 9278329101",
       type: "number",
-      className: "col-md-6",
+      className: "col-md-5",
       ref: mobileNumberRef
     },
     {
@@ -68,7 +68,7 @@ export const CreateAccount = () => {
       label: "Address",
       placeholder: "ex. Pob., Alcantara, Romblon",
       type: "text",
-      className: "col-md-8",
+      className: "col-md-7",
       ref: addressRef
     }
   ];
@@ -134,9 +134,9 @@ export const CreateAccount = () => {
 
   
   const ifExisting = () => (
-    <div className="col-md-12">
+    <div className="col-md-6">
       {lastBillInputFields.map(item => (
-        <div className="col-md-6" key={item.id}>
+        <div className="col-md-3" key={item.id}>
           <label for={item.id} class="form-label">
             {item.label}
           </label>
@@ -151,6 +151,23 @@ export const CreateAccount = () => {
     </div>
   )
 
+  const lastBillPeriod = () => (
+    <div className="col-md-6">
+      <div className="col-md-3">
+        <label for="inputLastBillYear" className="form-label">Year</label>
+        <select id="inputLastBillYear" className="form-select">
+          {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
+        </select> 
+      </div>
+      <div className="col-md-3">
+        <label for="inputLastBillMonth" className="form-label">Month</label>
+        <select id="inputLastBillMonth" className="form-select" >
+          {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
+        </select> 
+      </div>
+    </div>
+  )
+
 
 
   return (
@@ -161,7 +178,7 @@ export const CreateAccount = () => {
       <form className="row g-3">
         <div className="col-md-4">
           <label className="form-check-label">
-            Select if account is New or Existing
+            Select if Account is New or Existing
           </label>
           <div className="form-check form-check-inline">
             <input 
@@ -197,7 +214,7 @@ export const CreateAccount = () => {
 
         {showPrimaryInputFields(primaryInputFields)}
         
-        <div className="col-md-4">
+        <div className="col-md-5">
           <label for="inputBarangay" className="form-label">Barangay</label>
           <select id="inputBarangay" className="form-select" ref={barangayRef}>
             <option selected disabled value="">Choose a barangay</option>
@@ -206,6 +223,7 @@ export const CreateAccount = () => {
         </div>
         
         {isExisting && ifExisting()}
+        {isExisting && lastBillPeriod()}
 
 
         <div className="col-12">
