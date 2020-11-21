@@ -34,7 +34,7 @@ export const Bills = () => {
     })
   };
   
-  const showLoadingScreen = (res, year, handle) => {
+  const showLoadingScreen = (res, handle) => {
     if (!res) {
       return (
         <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "200px"}}>
