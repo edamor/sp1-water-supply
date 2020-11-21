@@ -1,7 +1,17 @@
+import { useRef, useState } from "react";
 
 
 
 export const CreateAccount = () => {
+
+  let isExistingRef = useRef(true);
+  let accountNumberRef = useRef(true);
+  let fullNameRef = useRef(true);
+  let mobileNumberRef = useRef(true);
+  let addressRef = useRef(true);
+  let barangayRef = useRef(true);
+
+  const [isExisting, setIsExisting] = useState(false);
 
   const inputFields = [
     {
@@ -9,28 +19,32 @@ export const CreateAccount = () => {
       label: "Account No.",
       placeholder: "ex. 2020-00-032",
       type: "text",
-      className: "col-md-6"
+      className: "col-md-6",
+      ref: accountNumberRef
     },
     {
       id: "mobileNumber",
       label: "Mobile No.",
       placeholder: "ex. 9278329101",
       type: "number",
-      className: "col-md-6"
+      className: "col-md-6",
+      ref: mobileNumberRef
     },
     {
       id: "fullName",
       label: "Full Name",
       placeholder: "Juan Santos",
       type: "text",
-      className: "col-md-12"
+      className: "col-md-12",
+      ref: fullNameRef
     },
     {
       id: "address",
       label: "Address",
       placeholder: "ex. Pob., Alcantara, Romblon",
       type: "text",
-      className: "col-md-8"
+      className: "col-md-8",
+      ref: addressRef
     }
   ];
 
@@ -38,7 +52,7 @@ export const CreateAccount = () => {
     x.map(item => (
       <div className={item.className}>
         <label for={item.id} className="form-label">{item.label}</label>
-        <input type={item.type} className="form-control" id={item.id} />
+        <input type={item.type} className="form-control" id={item.id} ref={item.ref} />
       </div>
     ))
   );
@@ -74,12 +88,14 @@ export const CreateAccount = () => {
 
   return (
     <div className="container">
-      <p className="display-6 text-center pt-2">
+      <p className="display-6 text-center py-2">
         New Account
       </p>
       <form className="row g-3">
         <div className="col-md-12">
-          <p>Select if account is new or existing from old system</p>
+          <p className="font-weight-bold">
+            Select if account is new or existing from old system
+          </p>
           <div className="form-check form-check-inline">
             <input 
               className="form-check-input" 
@@ -87,17 +103,23 @@ export const CreateAccount = () => {
               name="newOrExistingAccountOptions" 
               id="newAccount" 
               value={false}
+              onChange={(e) => {
+                console.log("New: \t" + e.target.value);
+              }}
             />
             <label className="form-check-label" for="newAccount">New</label>
           </div>
           <div className="form-check form-check-inline">
             <input 
-            className="form-check-input" 
-            type="radio" 
-            name="newOrExistingAccountOptions" 
-            id="existingAccount" 
-            value={true} 
-          />
+              className="form-check-input" 
+              type="radio" 
+              name="newOrExistingAccountOptions" 
+              id="existingAccount" 
+              value={true}
+              onChange={(e) => {
+                console.log("New: \t" + e.target.value);
+              }}
+            />
             <label className="form-check-label" for="existingAccount">Existing</label>
           </div>
         </div>
