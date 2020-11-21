@@ -43,7 +43,7 @@ export const Admin = () => {
       if (token === "Invalid Username" || token === "Incorrect Password") {
         alert(token);
         setLoading(false);
-        username.current.value = "";
+        usernameRef.current.value = "";
         passwordRef.current.value = "";
       } else {
         localStorage.setItem("token", token);
