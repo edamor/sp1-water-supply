@@ -7,7 +7,7 @@ import "./style.css";
 export const CustomerPage = () => {
   const TOKEN = localStorage.getItem("token");
   const acctNumber = tokenParser(TOKEN).account.accountNumber;
-  const API = `/account-management/accounts/${acctNumber}`;
+  const API = `/account-management/accounts/${acctNumber}/account`;
   const history = useHistory();
   
   const { data } = useFetch({
