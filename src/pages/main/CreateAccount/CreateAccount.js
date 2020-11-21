@@ -36,7 +36,7 @@ export const CreateAccount = () => {
       label: "Account No.",
       placeholder: "ex. 2020-00-032",
       type: "text",
-      className: "col-md-4",
+      className: "col-md-7",
       ref: accountNumberRef
     },
     {
@@ -44,7 +44,7 @@ export const CreateAccount = () => {
       label: "Meter Serial No.",
       placeholder: "ex. EVJ 3324211",
       type: "text",
-      className: "col-md-4",
+      className: "col-md-5",
       ref: meterSerialNumberRef
     },
     {
@@ -176,6 +176,16 @@ export const CreateAccount = () => {
         New Account
       </p>
       <form className="row g-3">
+        {showPrimaryInputFields(primaryInputFields)}
+        
+        <div className="col-md-5">
+          <label for="inputBarangay" className="form-label">Barangay</label>
+          <select id="inputBarangay" className="form-select" ref={barangayRef}>
+            <option selected disabled value="">Choose a barangay</option>
+            {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
+          </select> 
+        </div>
+
         <div className="col-md-4">
           <label className="form-check-label">
             Select if Account is New or Existing
@@ -211,20 +221,9 @@ export const CreateAccount = () => {
             <label className="form-check-label" for="existingAccount">Existing</label>
           </div>
         </div>
-
-        {showPrimaryInputFields(primaryInputFields)}
-        
-        <div className="col-md-5">
-          <label for="inputBarangay" className="form-label">Barangay</label>
-          <select id="inputBarangay" className="form-select" ref={barangayRef}>
-            <option selected disabled value="">Choose a barangay</option>
-            {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
-          </select> 
-        </div>
         
         {isExisting && ifExisting()}
         {isExisting && lastBillPeriod()}
-
 
         <div className="col-12">
           <CreateAccountButton />
