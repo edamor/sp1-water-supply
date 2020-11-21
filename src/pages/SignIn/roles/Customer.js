@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
 import { tokenParser } from "../../../utils/TokenParser";
@@ -61,7 +61,7 @@ export const Customer = () => {
       alert("Something went wrong...");
       setLoading(false);
     })
-  }
+  };
 
   const loadingButton = () => {
     if (!loading) {
@@ -84,7 +84,23 @@ export const Customer = () => {
           <span className="visually-hidden">Loading...</span>
         </button>
     )
-  }
+  };
+
+  
+  function onEnter(e) {
+    if (e.charCode === 13) {
+      doCustomerLogin()
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keypress", onEnter);
+    return () => {
+      window.removeEventListener("keypress", onEnter)
+    };
+  });
+
+
 
   return (
     <div className="">

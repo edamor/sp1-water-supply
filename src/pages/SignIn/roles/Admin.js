@@ -83,16 +83,17 @@ export const Admin = () => {
 
   
   function onEnter(e) {
-    console.log(e);
-  }
+    if (e.charCode === 13) {
+      doAdminLogin()
+    }
+  };
 
   useEffect(() => {
-    window.addEventListener("keypress", onEnter)
-
+    window.addEventListener("keypress", onEnter);
     return () => {
       window.removeEventListener("keypress", onEnter)
     };
-  })
+  });
 
 
   return (
