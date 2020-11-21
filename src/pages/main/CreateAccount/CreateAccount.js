@@ -17,9 +17,10 @@ export const CreateAccount = () => {
   const [meterSerialNumber, setMeterSerialNumber] = useState("");
   const [isExisting, setIsExisting] = useState(false);
 
+  let [newOrExisting, setNewOrExisting] = useState("NEW");
+
 
   // Refs
-  let isExistingRef = useRef(true);
   let accountNumberRef = useRef(true);
   let meterSerialNumberRef = useRef(true);
   let fullNameRef = useRef(true);
@@ -168,8 +169,8 @@ export const CreateAccount = () => {
               type="radio" 
               name="newOrExistingAccountOptions" 
               id="newAccount"
-              checked 
               value={false}
+              checked={!isExisting} 
               onChange={(e) => {
                 console.log("New: \t" + e.target.value);
                 setIsExisting(false)
@@ -184,6 +185,7 @@ export const CreateAccount = () => {
               name="newOrExistingAccountOptions" 
               id="existingAccount" 
               value={true}
+              checked={isExisting}
               onChange={(e) => {
                 console.log("New: \t" + e.target.value);
                 setIsExisting(true)
