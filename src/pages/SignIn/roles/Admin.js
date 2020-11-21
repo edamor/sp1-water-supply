@@ -83,11 +83,12 @@ export const Admin = () => {
 
 
   useEffect(() => {
-    window.addEventListener("keypress", (e) => {
+    function onEnter(e) {
       console.log(e);
-    })
+    }
+    window.addEventListener("keypress", onEnter)
 
-    return window.removeEventListener("keypress");
+    return window.removeEventListener("keypress", onEnter);
   })
 
 
