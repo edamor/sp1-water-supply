@@ -57,13 +57,19 @@ export const Admin = () => {
     })
   };
 
+  const developmentMode = () => {
+    localStorage.setItem("token", "123123123");
+    localStorage.setItem("role", "admin");
+    history.push("/");
+  };
+
   const loadingButton = () => {
     if (!loading) {
       return (
         <button
           type="button"
           className="btn btn-primary w-100"
-          onClick={doAdminLogin}
+          onClick={developmentMode}
         >
           <span>Login</span>
         </button>
@@ -81,19 +87,6 @@ export const Admin = () => {
   };
 
   
-  // const onEnter = useCallback((e) => {
-  //   if (e.charCode === 13) {
-  //     doAdminLogin()
-  //   }
-  // }, [doAdminLogin]);
-
-  // useEffect(() => {
-  //   window.addEventListener("keypress", onEnter);
-  //   return () => {
-  //     window.removeEventListener("keypress", onEnter)
-  //   };
-  // }, [onEnter]);
-
 
   return (
     <div className="">
