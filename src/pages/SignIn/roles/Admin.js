@@ -82,6 +82,8 @@ export const Admin = () => {
 
   
   function onEnter(e) {
+    console.log(username);
+    console.log(password);
     if (e.charCode === 13) {
       doAdminLogin()
     }
