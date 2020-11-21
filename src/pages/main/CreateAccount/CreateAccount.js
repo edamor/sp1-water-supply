@@ -74,20 +74,10 @@ export const CreateAccount = () => {
 
   return (
     <div className="container">
-      <p className="display-6 text-center">
+      <p className="display-6 text-center pt-2">
         New Account
       </p>
       <form className="row g-3">
-
-        {showInputFields(inputFields)}
-        
-        <div className="col-md-4">
-          <label for="inputBarangay" className="form-label">Barangay</label>
-          <select id="inputBarangay" className="form-select">
-            <option selected disabled value="">Choose a barangay</option>
-            {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
-          </select> 
-        </div>
         <div className="col-md-12">
           <p>Select if account is new or existing from old system</p>
           <div className="form-check form-check-inline">
@@ -110,6 +100,16 @@ export const CreateAccount = () => {
           />
             <label className="form-check-label" for="existingAccount">Existing</label>
           </div>
+        </div>
+
+        {showInputFields(inputFields)}
+        
+        <div className="col-md-4">
+          <label for="inputBarangay" className="form-label">Barangay</label>
+          <select id="inputBarangay" className="form-select">
+            <option selected disabled value="">Choose a barangay</option>
+            {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
+          </select> 
         </div>
         
         <div className="col-12">
