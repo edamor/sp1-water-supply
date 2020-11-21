@@ -10,23 +10,98 @@ export const Navbar = () => {
   let adminHomeTo = {
     pathname: "/admin",
     state: { from: history.location} 
-  }
+  };
   let adminAccountsTo = {
     pathname: "/admin/accounts",
     state: { from: history.location} 
-  }
+  };
   let adminCreateAccountTo = {
     pathname: "/admin/accounts/new",
     state: { from: history.location} 
-  }
+  };
   let customerHomeTo = {
     pathname: "/customer",
     state: { from: history.location} 
-  }
+  };
   let customerStatementsTo = {
     pathname: "/customer/bills",
     state: { from: history.location} 
-  }
+  };
+
+
+  const showNav = (r) => (
+    (r === "admin") ?
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav d-flex w-75">
+          <NavLink 
+            className="nav-link mx-2"
+            activeClassName="active"
+            exact
+            to={adminHomeTo}
+          >
+            Home
+          </NavLink>
+          <NavLink 
+            className="nav-link mx-2"
+            activeClassName="active"
+            to={adminAccountsTo}
+          >
+            Accounts
+          </NavLink>
+          <NavLink 
+            className="nav-link mx-2"
+            activeClassName="active"
+            to={adminCreateAccountTo}
+          >
+            New Account
+          </NavLink>
+        </div>
+        <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
+          <button
+            type="button"
+            className="btn btn-link sign-out-btn"
+            onClick={() => {
+              history.push("/login");
+              localStorage.clear();
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+      :
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav d-flex w-25 justify-content-around">
+          <NavLink 
+            className="nav-link"
+            activeClassName="active"
+            exact
+            to={customerHomeTo}
+          >
+            Account
+          </NavLink>
+          <NavLink 
+            className="nav-link"
+            activeClassName="active"
+            to={customerStatementsTo}
+          >
+            Bills
+          </NavLink>
+        </div>
+        <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
+          <button
+            type="button"
+            className="btn btn-link sign-out-btn"
+            onClick={() => {
+              history.push("/login");
+              localStorage.clear();
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+  )
 
   
 
@@ -45,49 +120,9 @@ export const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav d-flex w-25 justify-content-around">
-            <NavLink 
-              className="nav-link"
-              activeClassName="active"
-              exact
-              to={role === "admin" ? adminHomeTo : customerHomeTo}
-            >
-              {role === "admin" ? "Home" : "Account"}
-            </NavLink>
-            <NavLink 
-              className="nav-link"
-              activeClassName="active"
-              to={role === "admin" ? adminAccountsTo : customerStatementsTo}
-            >
-              {role === "admin" ? "Accounts" : "Bills"}
-            </NavLink>
-            {
-              role === "admin"
-              &&
-              <NavLink 
-                className="nav-link"
-                activeClassName="active"
-                to={adminCreateAccountTo}
-              >
-                New Account
-              </NavLink>
-            }
-          </div>
-          <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
-            <button
-              type="button"
-              className="btn btn-link sign-out-btn"
-              onClick={() => {
-                history.push("/login");
-                localStorage.clear();
-              }}
-            >
-              Sign Out
-            </button>
+        
+        {showNav(role)}
 
-          </div>
-        </div>
       </div>
     </nav>    
   )
