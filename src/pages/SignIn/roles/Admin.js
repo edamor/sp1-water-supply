@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { tokenParser } from "../../../utils/TokenParser";
 
@@ -81,20 +81,20 @@ export const Admin = () => {
   };
 
   
-  function onEnter(e) {
+  const onEnter = useCallback((e) => {
     console.log(username);
     console.log(password);
     if (e.charCode === 13) {
       doAdminLogin()
     }
-  };
+  }, [doAdminLogin, username, password]);
 
   useEffect(() => {
     window.addEventListener("keypress", onEnter);
     return () => {
       window.removeEventListener("keypress", onEnter)
     };
-  });
+  }, [onEnter]);
 
 
   return (
