@@ -13,13 +13,25 @@ export const RoleFilter = ({children, ...rest}) => {
   console.log(role);
 
   useEffect(() => {
-    if (role === "admin") {
-      history.push("/admin")
-    } else if (role === "customer") {
-      history.push("/customer")
-    } else {
-      history.push("/login")
+    switch (role) {
+      case "admin":
+        history.push("/admin");
+        break;
+      case "customer":
+        history.push("/customer");
+        break;
+      
+      default:
+        history.push("/login")
+        break;
     }
+    // if (role === "admin") {
+    //   history.push("/admin")
+    // } else if (role === "customer") {
+    //   history.push("/customer")
+    // } else {
+    //   history.push("/login")
+    // }
   }, [role, history])
 
   return (
