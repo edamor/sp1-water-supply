@@ -134,39 +134,40 @@ export const CreateAccount = () => {
 
   
   const ifExisting = () => (
-    <div className="col-md-6">
-      {lastBillInputFields.map(item => (
-        <div className="col-md-3" key={item.id}>
-          <label for={item.id} class="form-label">
-            {item.label}
-          </label>
-          <input 
-            type={item.type} 
-            class="form-control" 
-            id={item.id} 
-            placeholder={item.placeholder}
-          />
+    <div className="col-md-12">
+      <div className="col-md-6">
+        {lastBillInputFields.map(item => (
+          <div className="col-md-3" key={item.id}>
+            <label for={item.id} class="form-label">
+              {item.label}
+            </label>
+            <input 
+              type={item.type} 
+              class="form-control" 
+              id={item.id} 
+              placeholder={item.placeholder}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="col-md-6">
+        <div className="col-md-3">
+          <label for="inputLastBillYear" className="form-label">Year</label>
+          <select id="inputLastBillYear" className="form-select">
+            {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
+          </select> 
         </div>
-      ))}
+        <div className="col-md-3">
+          <label for="inputLastBillMonth" className="form-label">Month</label>
+          <select id="inputLastBillMonth" className="form-select" >
+            {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
+          </select> 
+        </div>
+      </div>
     </div>
   )
 
-  const lastBillPeriod = () => (
-    <div className="col-md-6">
-      <div className="col-md-3">
-        <label for="inputLastBillYear" className="form-label">Year</label>
-        <select id="inputLastBillYear" className="form-select">
-          {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
-        </select> 
-      </div>
-      <div className="col-md-3">
-        <label for="inputLastBillMonth" className="form-label">Month</label>
-        <select id="inputLastBillMonth" className="form-select" >
-          {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
-        </select> 
-      </div>
-    </div>
-  )
+  
 
 
 
@@ -186,11 +187,11 @@ export const CreateAccount = () => {
           </select> 
         </div>
 
-        <div className="col-md-4">
-          <label className="form-check-label">
+        <div className="col-md-12 ">
+          <label className="form-check-label text-center">
             Select if Account is New or Existing
           </label>
-          <div className="form-check form-check-inline">
+          <div className="form-check form-check-inline col-md-6">
             <input 
               className="form-check-input" 
               type="radio" 
@@ -205,7 +206,7 @@ export const CreateAccount = () => {
             />
             <label className="form-check-label" for="newAccount">New</label>
           </div>
-          <div className="form-check form-check-inline">
+          <div className="form-check form-check-inline col-md-6">
             <input 
               className="form-check-input" 
               type="radio" 
@@ -223,7 +224,6 @@ export const CreateAccount = () => {
         </div>
         
         {isExisting && ifExisting()}
-        {isExisting && lastBillPeriod()}
 
         <div className="col-12">
           <CreateAccountButton />
