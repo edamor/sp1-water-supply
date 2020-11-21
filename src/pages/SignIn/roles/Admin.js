@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FakeAuth } from "../../../FakeAuth";
 import { tokenParser } from "../../../utils/TokenParser";
@@ -49,7 +49,6 @@ export const Admin = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("role", tokenParser(token).role);
         history.push("/");
-        
       }
     })
     .catch(e => {
@@ -57,7 +56,7 @@ export const Admin = () => {
       alert("Something went wrong...");
       setLoading(false);
     })
-  }
+  };
 
   const loadingButton = () => {
     if (!loading) {
@@ -80,7 +79,16 @@ export const Admin = () => {
           <span className="visually-hidden">Loading...</span>
         </button>
     )
-  }
+  };
+
+
+  useEffect(() => {
+    window.addEventListener("keypress", (e) => {
+      console.log(e);
+    })
+
+    return window.removeEventListener("keypress");
+  })
 
 
   return (
