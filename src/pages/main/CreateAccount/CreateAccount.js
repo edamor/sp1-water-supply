@@ -134,8 +134,8 @@ export const CreateAccount = () => {
 
   
   const ifExisting = () => (
-    <div className="col-md-12">
-      <div className="col-md-5">
+    <div className="col-md-12 d-flex justify-content-around">
+      <div className="col-md-5 d-flex justify-content-around">
         {lastBillInputFields.map(item => (
           <div className="col-md-2" key={item.id}>
             <label for={item.id} class="form-label">
@@ -150,7 +150,7 @@ export const CreateAccount = () => {
           </div>
         ))}
       </div>
-      <div className="col-md-5">
+      <div className="col-md-5 d-flex justify-content-around">
         <div className="col-md-2">
           <label for="inputLastBillYear" className="form-label">Year</label>
           <select id="inputLastBillYear" className="form-select">
@@ -187,11 +187,11 @@ export const CreateAccount = () => {
           </select> 
         </div>
 
-        <div className="col-md-12 ">
+        <div className="col-md-12">
           <p className="form-check-label text-center">
             Select if Account is New or Existing
           </p>
-          <div className="form-check form-check-inline col-md-6">
+          <div className="form-check form-check-inline">
             <input 
               className="form-check-input" 
               type="radio" 
@@ -206,7 +206,7 @@ export const CreateAccount = () => {
             />
             <label className="form-check-label" for="newAccount">New</label>
           </div>
-          <div className="form-check form-check-inline col-md-6">
+          <div className="form-check form-check-inline">
             <input 
               className="form-check-input" 
               type="radio" 
@@ -225,7 +225,7 @@ export const CreateAccount = () => {
         
         {isExisting && ifExisting()}
 
-        <div className="col-12">
+        <div className="col-12 text-center">
           <CreateAccountButton />
         </div>
       </form>
