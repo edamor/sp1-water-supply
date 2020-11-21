@@ -81,20 +81,18 @@ export const Admin = () => {
   };
 
   
-  const onEnter = useCallback((e) => {
-    console.log(username);
-    console.log(password);
-    if (e.charCode === 13) {
-      doAdminLogin()
-    }
-  }, [doAdminLogin, username, password]);
+  // const onEnter = useCallback((e) => {
+  //   if (e.charCode === 13) {
+  //     doAdminLogin()
+  //   }
+  // }, [doAdminLogin]);
 
-  useEffect(() => {
-    window.addEventListener("keypress", onEnter);
-    return () => {
-      window.removeEventListener("keypress", onEnter)
-    };
-  }, [onEnter]);
+  // useEffect(() => {
+  //   window.addEventListener("keypress", onEnter);
+  //   return () => {
+  //     window.removeEventListener("keypress", onEnter)
+  //   };
+  // }, [onEnter]);
 
 
   return (

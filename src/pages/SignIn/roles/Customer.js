@@ -87,18 +87,18 @@ export const Customer = () => {
   };
 
   
-  function onEnter(e) {
-    if (e.charCode === 13) {
-      doCustomerLogin()
-    }
-  };
+  // function onEnter(e) {
+  //   if (e.charCode === 13) {
+  //     doCustomerLogin()
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("keypress", onEnter);
-    return () => {
-      window.removeEventListener("keypress", onEnter)
-    };
-  });
+  // useEffect(() => {
+  //   window.addEventListener("keypress", onEnter);
+  //   return () => {
+  //     window.removeEventListener("keypress", onEnter)
+  //   };
+  // });
 
 
 

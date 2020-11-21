@@ -15,7 +15,11 @@ export const Navbar = () => {
     pathname: "/admin/accounts",
     state: { from: history.location} 
   }
-    let customerHomeTo = {
+  let adminCreateAccountTo = {
+    pathname: "/admin/accounts/new",
+    state: { from: history.location} 
+  }
+  let customerHomeTo = {
     pathname: "/customer",
     state: { from: history.location} 
   }
@@ -58,10 +62,17 @@ export const Navbar = () => {
             >
               {role === "admin" ? "Accounts" : "Bills"}
             </NavLink>
-            {/* <a className="nav-link active" aria-current="page" href="#">Home</a>
-            <a className="nav-link" href="#">Features</a>
-            <a className="nav-link" href="#">Pricing</a>
-          <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> */}
+            {
+              role === "admin"
+              &&
+              <NavLink 
+                className="nav-link"
+                activeClassName="active"
+                to={adminCreateAccountTo}
+              >
+                New Account
+              </NavLink>
+            }
           </div>
           <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
             <button
