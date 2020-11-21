@@ -135,9 +135,9 @@ export const CreateAccount = () => {
   
   const ifExisting = () => (
     <div className="col-md-12">
-      <div className="col-md-6">
+      <div className="col-md-5">
         {lastBillInputFields.map(item => (
-          <div className="col-md-3" key={item.id}>
+          <div className="col-md-2" key={item.id}>
             <label for={item.id} class="form-label">
               {item.label}
             </label>
@@ -150,14 +150,14 @@ export const CreateAccount = () => {
           </div>
         ))}
       </div>
-      <div className="col-md-6">
-        <div className="col-md-3">
+      <div className="col-md-5">
+        <div className="col-md-2">
           <label for="inputLastBillYear" className="form-label">Year</label>
           <select id="inputLastBillYear" className="form-select">
             {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
           </select> 
         </div>
-        <div className="col-md-3">
+        <div className="col-md-2">
           <label for="inputLastBillMonth" className="form-label">Month</label>
           <select id="inputLastBillMonth" className="form-select" >
             {barangayList.map(item => <option value={item.value}>{item.label}</option>)}
@@ -188,9 +188,9 @@ export const CreateAccount = () => {
         </div>
 
         <div className="col-md-12 ">
-          <label className="form-check-label text-center">
+          <p className="form-check-label text-center">
             Select if Account is New or Existing
-          </label>
+          </p>
           <div className="form-check form-check-inline col-md-6">
             <input 
               className="form-check-input" 
