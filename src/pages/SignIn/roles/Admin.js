@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { FakeAuth } from "../../../FakeAuth";
 import { tokenParser } from "../../../utils/TokenParser";
 
 const ADMIN_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/admin/login";

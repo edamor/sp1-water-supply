@@ -1,8 +1,7 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { BillListing } from "../../components/BillListing/BillListing";
 import { BillContext } from "../../contexts/BillContext";
-import { CustomerDataContext } from "../../contexts/CustomerDataContext";
 import { useFetch } from "../../hooks/useFetch";
 import { tokenParser } from "../../utils/TokenParser";
 
