@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { tokenParser } from "../../../utils/TokenParser";
 
@@ -57,11 +57,11 @@ export const Admin = () => {
     })
   };
 
-  const developmentMode = () => {
-    localStorage.setItem("token", "123123123");
-    localStorage.setItem("role", "admin");
-    history.push("/");
-  };
+  // const developmentMode = () => {
+  //   localStorage.setItem("token", "123123123");
+  //   localStorage.setItem("role", "admin");
+  //   history.push("/");
+  // };
 
   const loadingButton = () => {
     if (!loading) {
@@ -69,7 +69,7 @@ export const Admin = () => {
         <button
           type="button"
           className="btn btn-primary w-100"
-          onClick={developmentMode}
+          onClick={doAdminLogin}
         >
           <span>Login</span>
         </button>

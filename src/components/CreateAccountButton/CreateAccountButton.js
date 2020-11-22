@@ -9,7 +9,8 @@ export const CreateAccountButton = ({
   lastBillNumber,
   lastBillReading,
   lastBillPeriodTo,
-  existing
+  existing,
+  validate
 }) => {
 
   const payload = {
@@ -26,6 +27,7 @@ export const CreateAccountButton = ({
 
   const handleClick = (p) => {
     console.log(p);
+    validate();
   }
   
 

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { BillListing } from "../../components/BillListing/BillListing";
+import Loader from "../../components/Loader/Loader";
 import { BillContext } from "../../contexts/BillContext";
 import { useFetch } from "../../hooks/useFetch";
 import { tokenParser } from "../../utils/TokenParser";
@@ -37,29 +38,7 @@ export const Bills = () => {
   const showLoadingScreen = (res, handle) => {
     if (!res) {
       return (
-        <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "200px"}}>
-          <div className="spinner-grow mx-2" style={{
-            width: "2.5rem",
-            height : "2.5rem",
-            transitionDelay: "0.25s"
-            }} role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow mx-3" style={{
-            width: "3rem",
-            height : "3rem",
-            transitionDelay: "1.25s"
-            }} role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow mx-2" style={{
-            width: "2.5rem",
-            height : "2.5rem",
-            transitionDelay: "2.25s"
-            }} role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+        <Loader />
       )
     } else {
       return (

@@ -1,39 +1,34 @@
-import {useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
-import './style.scss';
 
 
 
 export default function Loader() {
 
-  let history = useHistory();
-
-  let {isAuth, setIsAuth} = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (localStorage.getItem("token")) {
-      setIsAuth(true)
-      history.push("/")
-    } else {
-      setIsAuth(false)
-      history.push("/login")
-    } 
-    }, 1500);
-
-    return () => clearTimeout(timer);
-    
-  })
+  
 
   return (
-    <div className="loader-wrapper">
-      <div className="ball-loader">
-        <div className="ball-loader-ball ball1"></div>
-        <div className="ball-loader-ball ball2"></div>
-        <div className="ball-loader-ball ball3"></div>
+      <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "200px"}}>
+        <div className="spinner-grow mx-2" style={{
+          width: "2.2rem",
+          height : "2.2rem",
+          animationDelay: "0.08s"
+          }} role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-grow mx-3" style={{
+          width: "3rem",
+          height : "3rem",
+          animationDelay: "0.16s"
+          }} role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-grow mx-2" style={{
+          width: "2.2rem",
+          height : "2.2rem",
+          animationDelay: "0.24s"
+          }} role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
       </div>
-    </div>
-
   ) 
   
 }

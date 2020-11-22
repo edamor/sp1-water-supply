@@ -44,6 +44,7 @@ export const Navbar = () => {
           <NavLink 
             className="nav-link mx-2"
             activeClassName="active"
+            exact
             to={adminAccountsTo}
           >
             Accounts
@@ -51,6 +52,7 @@ export const Navbar = () => {
           <NavLink 
             className="nav-link mx-2"
             activeClassName="active"
+            exact
             to={adminCreateAccountTo}
           >
             New Account
