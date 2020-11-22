@@ -19,12 +19,14 @@ export const CreateAccount = () => {
     barangay: "POB", 
     existing: false, 
     lastBillNumber: 0, 
-    lastBillReading: 0 
+    lastBillReading: 0,
+    lastBillPeriodTo: 0
   });
   const [errors, setErrors] = useState({});
 
   const [loading, setLoading] = useState(false);
 
+  console.log(values)
 
 
   return (
