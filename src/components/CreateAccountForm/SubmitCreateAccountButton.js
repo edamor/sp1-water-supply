@@ -26,7 +26,7 @@ export const SubmitCreateAccountButton = ({values, setValues, errors, setErrors,
       })
       .then(response => response.text())
       .then(data => {
-        console.log(JSON.parse(data));
+        console.log(data);
         setLoading(false);
         alert("Account Successfully Created");
         history.push({
