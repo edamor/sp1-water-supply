@@ -43,7 +43,7 @@ export const Customer = () => {
     .then(response => response.text())
     .then(token => {
       console.log(token);
-      if (token === "Invalid Username" || token === "Incorrect Password") {
+      if (token === "Invalid Username" || token === "Incorrect Password" || token === "Login Invalid") {
         alert(token);
         setLoading(false);
         accountNoRef.current.value = "";
