@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sp1-water-supply/static/css/main.2e33e59c.chunk.css",
-    "main.js": "/sp1-water-supply/static/js/main.7354c89c.chunk.js",
-    "main.js.map": "/sp1-water-supply/static/js/main.7354c89c.chunk.js.map",
+    "main.js": "/sp1-water-supply/static/js/main.0642b834.chunk.js",
+    "main.js.map": "/sp1-water-supply/static/js/main.0642b834.chunk.js.map",
     "runtime-main.js": "/sp1-water-supply/static/js/runtime-main.59b4fdf5.js",
     "runtime-main.js.map": "/sp1-water-supply/static/js/runtime-main.59b4fdf5.js.map",
     "static/js/2.f786ed86.chunk.js": "/sp1-water-supply/static/js/2.f786ed86.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.59b4fdf5.js",
     "static/js/2.f786ed86.chunk.js",
     "static/css/main.2e33e59c.chunk.css",
-    "static/js/main.7354c89c.chunk.js"
+    "static/js/main.0642b834.chunk.js"
   ]
 }
