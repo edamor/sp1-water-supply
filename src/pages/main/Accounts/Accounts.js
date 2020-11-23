@@ -21,7 +21,9 @@ export const Accounts = () => {
         </p>
         {
           !data ?
-          <Loader />
+          <div className="row py-4">
+            <Loader />
+          </div>
           :
           <div className="row pt-2">
             <div className="col-12 col-md-10 m-auto">
