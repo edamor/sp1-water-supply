@@ -29,9 +29,12 @@ export const SubmitCreateAccountButton = (
       })
       .then(response => response.text())
       .then(data => {
-        console.log(data);
         setLoading(false);
-        setShowModal(true);
+        if (data === "Success") {
+          setShowModal(true);
+        } else {
+          setErrors({...errors, accountNumber: "Account Number already taken"})
+        }
       })
       .catch(e => {
         console.log(e);
