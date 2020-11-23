@@ -4,7 +4,9 @@ import { useEffect, useState } from "react"
 export const MobileNumberField = ({values, setValues, errors}) => {
 
   function handleChange(e) {
-    setValues({...values, mobileNumber: e.target.value.trim()})
+    if (e.target.value.length <= 9) {
+      setValues({...values, mobileNumber: e.target.value.trim()})
+    } else e.target.value.trim();
   };
 
   const [state, setState] = useState("form-control");
@@ -29,6 +31,7 @@ export const MobileNumberField = ({values, setValues, errors}) => {
         type="number" 
         className={state}
         id="mobileNumberId"
+        placeholder="ex. 9179876543"
         value={values.mobileNumber || ""}
         onChange={handleChange} 
       />

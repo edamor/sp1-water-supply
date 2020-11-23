@@ -10,13 +10,15 @@ import { NewOrExistingField } from "../../../components/CreateAccountForm/NewOrE
 import { LastBillDetailsFields } from "../../../components/CreateAccountForm/LastBillDetailsFields";
 import { SubmitCreateAccountButton } from "../../../components/CreateAccountForm/SubmitCreateAccountButton";
 import Loader from "../../../components/Loader/Loader";
+import { SuccessModal } from "../../../components/CreateAccountForm/SuccessModal";
 
 
 
 export const CreateAccount = () => {
   
   const [values, setValues] = useState({
-    barangay: "POB", 
+    barangay: "POB",
+    address: "Poblacion, Alcantara, Romblon",
     existing: false, 
     lastBillNumber: 0, 
     lastBillReading: 0,
@@ -26,13 +28,20 @@ export const CreateAccount = () => {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(values)
-
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="container">
+      {
+        showModal 
+        &&
+        <SuccessModal 
+          setShowModal={setShowModal}
+          setValues={setValues}
+        />
+      }
       <p className="display-6 text-center py-2">
-        Account Information
+        {loading ? "Submitting Account Information" : "Account Information"}
       </p>
       {
         loading ?
@@ -68,14 +77,12 @@ export const CreateAccount = () => {
             setValues={setValues}
             errors={errors}
           />
-          <AddressField 
-            values={values}
-            setValues={setValues}
-            errors={errors}
-          />
           <BarangayField 
             values={values}
             setValues={setValues}
+          />
+          <AddressField
+            errors={errors}
           />
           {
             values.existing 
@@ -88,14 +95,14 @@ export const CreateAccount = () => {
           }
           <SubmitCreateAccountButton 
             values={values}
-            setValues={setValues}
             errors={errors}
             setErrors={setErrors}
             setLoading={setLoading}
+            setShowModal={setShowModal}
           />
-        </form>      
-        
+        </form>        
       }
+
     </div>
   )
 }

@@ -1,11 +1,14 @@
-import { useHistory } from "react-router-dom";
 import { validate } from "./CreateAccountValidationRules"
 
 const CREATE_ACCOUNT_URI = "https://sp1-blue-sparrow.herokuapp.com/api/v1/account-management/accounts/create";
 
-export const SubmitCreateAccountButton = ({values, setValues, errors, setErrors, setLoading}) => {
+export const SubmitCreateAccountButton = (
+  { values,
+    errors, 
+    setErrors, 
+    setLoading, 
+    setShowModal  }) => {
   const TOKEN = localStorage.getItem("token");
-  const history = useHistory();
   function handleMouseDown() {
     setErrors(validate(values))
   }
@@ -28,20 +31,18 @@ export const SubmitCreateAccountButton = ({values, setValues, errors, setErrors,
       .then(data => {
         console.log(data);
         setLoading(false);
-        alert("Account Successfully Created");
-        history.push({
-          to: "/admin/accounts",
-          state: {from: history.location}
-        })
+        setShowModal(true);
       })
       .catch(e => {
         console.log(e);
         alert("Something went wrong...");
         setLoading(false);
       })
-
     }
   }
+
+  
+  
 
   return (
     <div className="col-md-12 d-flex justify-content-center py-3">

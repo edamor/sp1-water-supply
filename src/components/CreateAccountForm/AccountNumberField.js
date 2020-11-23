@@ -29,8 +29,9 @@ export const AccountNumberField = ({values, setValues, errors}) => {
         type="text" 
         className={state}
         id="accountNumberId"
+        placeholder="ex. 2020-00-01"
         value={values.accountNumber || ""}
-        onChange={handleChange} 
+        onChange={handleChange}
       />
       <div className="invalid-feedback">
         {errors.accountNumber || ""}

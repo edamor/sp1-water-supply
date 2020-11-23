@@ -29,6 +29,7 @@ export const FullNameField = ({values, setValues, errors}) => {
         type="text" 
         className={state}
         id="fullNameId"
+        placeholder="ex. Juan Dela Cruz"
         value={values.fullName || ""}
         onChange={handleChange} 
       />

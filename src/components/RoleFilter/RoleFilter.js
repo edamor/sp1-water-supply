@@ -25,13 +25,6 @@ export const RoleFilter = ({children, ...rest}) => {
         history.push("/login")
         break;
     }
-    // if (role === "admin") {
-    //   history.push("/admin")
-    // } else if (role === "customer") {
-    //   history.push("/customer")
-    // } else {
-    //   history.push("/login")
-    // }
   }, [role, history])
 
   return (

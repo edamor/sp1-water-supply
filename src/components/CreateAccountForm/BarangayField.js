@@ -30,8 +30,26 @@ export const BarangayField = ({values, setValues}) => {
     },
   ];
 
+  const addressList = {
+    POB: "Poblacion",
+    GUI: "Gui-ob",
+    MAD: "Madalag",
+    BAG: "Bagsik",
+    LAW: "Lawan",
+    CAM: "Camili"
+  };
+    
+  
+
   function handleChange(e) {
-    setValues({...values, barangay: e.target.value})
+    setValues(
+      {
+        ...values, 
+        barangay: e.target.value,
+        address: `${addressList[`${e.target.value}`]}, Alcantara, Romblon`
+      }
+    )
+    console.log(addressList[`${e.target.value}`]);
   }
 
   return (

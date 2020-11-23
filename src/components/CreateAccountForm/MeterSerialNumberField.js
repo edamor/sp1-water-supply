@@ -29,6 +29,7 @@ export const MeterSerialNumberField = ({values, setValues, errors}) => {
         type="text" 
         className={state}
         id="meterSerialNumberId"
+        placeholder="ex. EVJ 64352341"
         value={values.meterSerialNumber || ""}
         onChange={handleChange} 
       />
