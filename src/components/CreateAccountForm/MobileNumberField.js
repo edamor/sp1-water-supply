@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 export const MobileNumberField = ({values, setValues, errors}) => {
 
   function handleChange(e) {
-    if (e.target.value.length <= 9) {
+    if (e.target.value.length <= 10) {
       setValues({...values, mobileNumber: e.target.value.trim()})
     } else e.target.value.trim();
   };

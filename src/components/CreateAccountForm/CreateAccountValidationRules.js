@@ -15,8 +15,8 @@ export const validate = (values) => {
     errors.mobileNumber = "Mobile Number is required"
   }
   
-  if (values.mobileNumber?.length < 9) {
-    errors.mobileNumber = "Mobile Number must be 9 digits long"
+  if (values.mobileNumber?.length < 10) {
+    errors.mobileNumber = "Mobile Number must be 10 digits long"
   }
 
   if (!values.address) {
