@@ -32,15 +32,14 @@ export const Listing = ({accounts}) => {
   // ];
 
 
-
   return (
     <table className="table table-hover table-striped">
       <thead>
         <tr>
           <th scope="col">Account No.</th>
           <th scope="col">Name</th>
-          <th scope="col">Last Reading</th>
-          <th scope="col">Last Reading Period</th>
+          <th scope="col" className="text-center">Last Reading</th>
+          <th scope="col" className="text-center">Last Period Covered</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -54,11 +53,16 @@ export const Listing = ({accounts}) => {
               <td>
                 {item.fullName}
               </td>
-              <td>
+              <td className="text-center">
                 {item.lastBillReading}
               </td>
-              <td>
-                {new Date(item.lastBillPeriodTo).toDateString}
+              <td className="text-center">
+                {
+                  item.lastBillPeriodTo === 0 ?
+                  ""
+                  :
+                  new Date(item.lastBillPeriodTo).toDateString().substring(4,7)
+                }
               </td>
               <td className="d-flex justify-content-around">
                 <button

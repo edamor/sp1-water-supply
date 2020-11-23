@@ -16,7 +16,7 @@ export const Accounts = () => {
   return (
     <>
       <div className="container h-100">
-        <p className="display-6">
+        <p className="display-6 text-center pt-2">
           ACCOUNTS
         </p>
         {
