@@ -1,4 +1,4 @@
-import { Listing } from "../../../components/Listing/Listing"
+import { AccountsListing } from "../../../components/AccountsListing/AccountsListing"
 import Loader from "../../../components/Loader/Loader";
 import { useFetch } from "../../../hooks/useFetch";
 
@@ -11,6 +11,7 @@ export const Accounts = () => {
     endpoint: API,
     token: TOKEN
   });
+
 
 
   return (
@@ -27,7 +28,7 @@ export const Accounts = () => {
           :
           <div className="row pt-2">
             <div className="col-12 col-md-10 m-auto">
-              <Listing accounts={data} />
+              <AccountsListing accounts={data} />
             </div>
           </div>
         }

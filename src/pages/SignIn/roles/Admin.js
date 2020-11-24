@@ -59,11 +59,11 @@ export const Admin = () => {
     })
   };
 
-  // const developmentMode = () => {
-  //   localStorage.setItem("token", devToken);
-  //   localStorage.setItem("role", tokenParser(devToken).role);
-  //   history.push("/");
-  // };
+  const developmentMode = () => {
+    localStorage.setItem("token", devToken);
+    localStorage.setItem("role", tokenParser(devToken).role);
+    history.push("/");
+  };
 
   const loadingButton = () => {
     if (!loading) {
@@ -71,7 +71,7 @@ export const Admin = () => {
         <button
           type="button"
           className="btn btn-primary w-100"
-          onClick={doAdminLogin}
+          onClick={developmentMode}
         >
           <span>Login</span>
         </button>
