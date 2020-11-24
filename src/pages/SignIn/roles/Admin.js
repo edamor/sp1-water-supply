@@ -4,6 +4,8 @@ import { tokenParser } from "../../../utils/TokenParser";
 
 const ADMIN_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/admin/login";
 
+const devToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0YWRtaW4xIiwidXNlcklkIjo5MSwicm9sZSI6ImFkbWluIn0.MLD1gmEeHBsvPT0erjUZbo0P5akYmu5JAf_9elAR6vKho7A7tz_NM5be8kI1kbat8eyZOW4V9dvynbIbxqiV4Q";
+
 export const Admin = () => {
   let history = useHistory();
   
@@ -58,8 +60,8 @@ export const Admin = () => {
   };
 
   // const developmentMode = () => {
-  //   localStorage.setItem("token", "123123123");
-  //   localStorage.setItem("role", "admin");
+  //   localStorage.setItem("token", devToken);
+  //   localStorage.setItem("role", tokenParser(devToken).role);
   //   history.push("/");
   // };
 
@@ -102,7 +104,8 @@ export const Admin = () => {
           id="usernameInput" 
           placeholder="Username"
           ref={usernameRef}
-          onChange={handleUsername} 
+          onChange={handleUsername}
+          disabled={loading} 
         />
       </div>
       <div className="col-12 mb-4">
@@ -118,6 +121,7 @@ export const Admin = () => {
           placeholder="Password"
           ref={passwordRef}
           onChange={handlePassword} 
+          disabled={loading} 
         />
       </div>
       <div className="col-12 mb-3 pt-2">

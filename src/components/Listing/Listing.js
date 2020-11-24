@@ -1,50 +1,110 @@
+import { useState } from "react"
+import { useTableSort } from "../../hooks/useTableSort";
+import { ArrowUp, ArrowDown } from "../../pages/main/Accounts/SvgIcons";
 
 
 export const Listing = ({accounts}) => {
-   
 
-  // let accounts = [
-  //   {
-  //     accountNo: "1101",
-  //     name: "juan santos",
-  //     mobileNo: "912-3456"
-  //   },
-  //   {
-  //     accountNo: "1102",
-  //     name: "john cruz",
-  //     mobileNo: "912-5205"
-  //   },
-  //   {
-  //     accountNo: "1103",
-  //     name: "mark lopez",
-  //     mobileNo: "912-6812"
-  //   },
-  //   {
-  //     accountNo: "1104",
-  //     name: "peter tan",
-  //     mobileNo: "912-2546"
-  //   },
-  //   {
-  //     accountNo: "1105",
-  //     name: "beth carlos",
-  //     mobileNo: "912-6481"
-  //   }
-  // ];
+  const [sortBy, setSortBy] = useState("");
+  const [arrow, setArrow] = useState({accountNumber: "up"});
+
+  const sorted = useTableSort({
+    data: accounts,
+    sortBy: sortBy
+  });
+
+  const arrowIcons = {
+    up: <ArrowUp />,
+    down: <ArrowDown />
+  }
+
+
+  function sortByAccountNumber() {
+    if (sortBy === "accountNumberAsc") {
+      setSortBy("accountNumberDesc")
+      setArrow({accountNumber: "down"})
+    } else {
+      setSortBy("accountNumberAsc")
+      setArrow({accountNumber: "up"})
+    }
+  }
+  function sortByFullName() {
+    if (sortBy === "fullNameAsc") {
+      setSortBy("fullNameDesc")
+      setArrow({fullName: "down"})
+    } else {
+      setSortBy("fullNameAsc")
+      setArrow({fullName: "up"})
+    }
+  }
+  function sortByBarangay() {
+    if (sortBy === "barangayAsc") {
+      setSortBy("barangayDesc")
+      setArrow({barangay: "down"})
+    } else {
+      setSortBy("barangayAsc")
+      setArrow({barangay: "up"})
+    }
+  }
+  function sortByLastBillReading() {
+    if (sortBy === "lastBillReadingAsc") {
+      setSortBy("lastBillReadingDesc")
+      setArrow({lastBillReading: "down"})
+    } else {
+      setSortBy("lastBillReadingAsc")
+      setArrow({lastBillReading: "up"})
+    }
+  }
+  function sortByLastBillPeriodTo() {
+    if (sortBy === "lastBillPeriodToAsc") {
+      setSortBy("lastBillPeriodToDesc")
+      setArrow({lastBillPeriodTo: "down"})
+    } else {
+      setSortBy("lastBillPeriodToAsc")
+      setArrow({lastBillPeriodTo: "up"})
+    }
+  }
 
 
   return (
     <table className="table table-hover table-striped">
       <thead>
         <tr>
-          <th scope="col">Account No.</th>
-          <th scope="col">Name</th>
-          <th scope="col" className="text-center">Last Reading</th>
-          <th scope="col" className="text-center">Last Period Covered</th>
+          <th scope="col">
+            <div style={{cursor: "pointer"}} className="w-100" onClick={sortByAccountNumber}>
+              Account No.
+              {arrow.accountNumber && arrowIcons[arrow.accountNumber]}
+            </div>
+          </th>
+          <th scope="col">
+            <div style={{cursor: "pointer"}} className="pr-1" onClick={sortByFullName}>
+              Full Name
+              {arrow.fullName && arrowIcons[arrow.fullName]}
+            </div>
+          </th>
+          <th scope="col">
+            <div style={{cursor: "pointer"}} className="pr-1" onClick={sortByBarangay}>
+              Barangay
+              {arrow.barangay && arrowIcons[arrow.barangay]}
+            </div>
+          </th>
+          <th scope="col" className="text-center">
+            <div style={{cursor: "pointer"}} className="pr-1" onClick={sortByLastBillReading}>
+              Last Meter Reading
+              {arrow.lastBillReading && arrowIcons[arrow.lastBillReading]}
+            </div>
+          </th>
+          <th scope="col" className="text-center">
+            <div style={{cursor: "pointer"}} className="pr-1" onClick={sortByLastBillPeriodTo}>
+              Month Covered
+              {arrow.lastBillPeriodTo && arrowIcons[arrow.lastBillPeriodTo]}
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        {accounts.map(item => {
+        {sorted && sorted.map(item => {
           return (
             <tr key={item.accountNumber}>
               <th scope="row">
@@ -52,6 +112,9 @@ export const Listing = ({accounts}) => {
               </th>
               <td>
                 {item.fullName}
+              </td>
+              <td>
+                {item.address.split(",")[0]}
               </td>
               <td className="text-center">
                 {item.lastBillReading}
@@ -77,7 +140,7 @@ export const Listing = ({accounts}) => {
                   className="btn btn-sm btn-secondary"
 
                 >
-                  Issue Statement
+                  Issue Bill
                 </button>
               </td>
             </tr>

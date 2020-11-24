@@ -17,7 +17,7 @@ export const Accounts = () => {
     <>
       <div className="container h-100">
         <p className="display-6 text-center pt-2">
-          ACCOUNTS
+          Accounts List
         </p>
         {
           !data ?

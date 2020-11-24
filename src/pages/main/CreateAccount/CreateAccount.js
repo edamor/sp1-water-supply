@@ -31,7 +31,7 @@ export const CreateAccount = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="container">
+    <div className="container col-md-8">
       {
         showModal 
         &&
