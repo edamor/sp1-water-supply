@@ -40,8 +40,8 @@ export const CreateAccount = () => {
           setValues={setValues}
         />
       }
-      <p className="display-6 text-center py-2">
-        {loading ? "Submitting Account Information" : "Account Information"}
+      <p className="display-5 text-center py-3">
+        {loading ? "Submitting Account Information" : "Account Registration"}
       </p>
       {
         loading ?

@@ -55,7 +55,7 @@ export const Bills = () => {
 
   return (
     <div className="container pt-2">
-      <p className="display-5 text-center pt-2">
+      <p className="display-5 text-center py-3">
           My Bills
       </p>
       <div className="row pt-2">

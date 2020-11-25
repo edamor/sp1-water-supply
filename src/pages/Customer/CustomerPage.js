@@ -17,7 +17,7 @@ export const CustomerPage = () => {
   });
 
 
-
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   
   const showLoadingScreen = (res) => {
     if (!res) {
@@ -37,12 +37,24 @@ export const CustomerPage = () => {
         <dt className="col-sm-3">Mobile No.</dt>
         <dd className="col-sm-9">
           {data.mobileNumber === undefined ? "No Mobile Number" :
-          `+63-${data.mobileNumber.toString().substring(0,3)}-
+          `0${data.mobileNumber.toString().substring(0,3)}-
           ${data.mobileNumber.toString().substring(3)}`}   
         </dd>
         <dt className="col-sm-3">Meter Serial No.</dt>
         <dd className="col-sm-9">
           {data.meterSerialNumber ? data.meterSerialNumber : "NO METER SERIAL NO."}
+        </dd>
+        <dt className="col-sm-3">Most Recent Bill Details</dt>
+        <dt className="col-sm-3">Month Covered</dt>
+        <dd className="col-sm-9">
+          {
+            data.lastBillPeriodTo === 0 ? "-" 
+            : months[new Date(data.lastBillPeriodTo).getMonth()]
+          }
+        </dd>
+        <dt className="col-sm-3">Meter Reading</dt>
+        <dd className="col-sm-9">
+          {data.lastBillReading === 0 ? "-" : data.lastBillReading}
         </dd>
       </dl>
     )
@@ -82,7 +94,7 @@ export const CustomerPage = () => {
             })
           }}
         >
-          View My Bills
+          View Bills
         </button>
       </div>
     </div>

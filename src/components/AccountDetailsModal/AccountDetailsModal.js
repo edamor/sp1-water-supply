@@ -46,7 +46,7 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
             </div>
             <hr className="my-4" />
             <div className="row g-4">
-              <div className="col-12 h6">Previous Bill Summary</div>
+              <div className="col-12 h6">Previous Statement Summary</div>
               <div className="col-md-5 d-flex justify-content-between mr-auto">
                 <span className="font-weight-bold">Month Covered:</span>
                   {

@@ -55,7 +55,7 @@ export const Navbar = () => {
             exact
             to={adminCreateAccountTo}
           >
-            New Account
+            Register Account
           </NavLink>
         </div>
         <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
@@ -110,7 +110,9 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <span>WebApp</span>
+        <div className="mr-1 ">Water</div>
+        <div className="mr-1 ">Supply</div>
+        <div className="mr-1 ">System</div>
         <button 
           className="navbar-toggler" 
           type="button" 

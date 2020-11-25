@@ -23,8 +23,8 @@ export const Accounts = () => {
     <>
       <div className="container h-100">
         {showModal && <AccountDetailsModal account={viewAccount} setShowModal={setShowModal}  />}
-        <p className="display-6 text-center pt-2">
-          Accounts List
+        <p className="display-5 text-center py-3">
+          Accounts
         </p>
         {
           !data ?

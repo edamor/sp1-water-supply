@@ -44,22 +44,27 @@ export const SuccessModal = ({setShowModal, setValues}) => {
               onClick={handleClose}></button>
           </div>
           <div className="modal-body">
-            Account has been successfully created. Press 'Close' to create another account or press 'View Accounts' to go to the Accounts page.
+            <p>
+              Account has been successfully created! 
+            </p>
+            <p>
+              Go to Accounts page to view the newly created account or continue and create another account.
+            </p>
           </div>
           <div className="modal-footer">
             <button 
               type="button" 
-              className="btn btn-secondary" 
-              onClick={handleClose}
-            >
-              Close
-            </button>
-            <button 
-              type="button" 
-              className="btn btn-primary"
+              className="btn btn-outline-primary"
               onClick={handleViewAccounts}
             >
               View Accounts
+            </button>
+            <button 
+              type="button" 
+              className="btn btn-primary" 
+              onClick={handleClose}
+            >
+              Continue
             </button>
           </div>
         </div>
