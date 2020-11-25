@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { AccountDetailsModal } from "../../../components/AccountDetailsModal/AccountDetailsModal";
 import { AccountsListing } from "../../../components/AccountsListing/AccountsListing"
 import Loader from "../../../components/Loader/Loader";
 import { useFetch } from "../../../hooks/useFetch";
@@ -12,11 +14,15 @@ export const Accounts = () => {
     token: TOKEN
   });
 
+  const [showModal, setShowModal] = useState(false);
+  const [viewAccount, setViewAccount] = useState({});
+
 
 
   return (
     <>
       <div className="container h-100">
+        {showModal && <AccountDetailsModal account={viewAccount} setShowModal={setShowModal}  />}
         <p className="display-6 text-center pt-2">
           Accounts List
         </p>
@@ -28,7 +34,11 @@ export const Accounts = () => {
           :
           <div className="row pt-2">
             <div className="col-12 col-md-10 m-auto">
-              <AccountsListing accounts={data} />
+              <AccountsListing 
+                accounts={data} 
+                setShowModal={setShowModal} 
+                selectAccount={setViewAccount} 
+              />
             </div>
           </div>
         }

@@ -4,7 +4,7 @@ import { tokenParser } from "../../../utils/TokenParser";
 
 const ADMIN_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/admin/login";
 
-const devToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0YWRtaW4xIiwidXNlcklkIjo5MSwicm9sZSI6ImFkbWluIn0.MLD1gmEeHBsvPT0erjUZbo0P5akYmu5JAf_9elAR6vKho7A7tz_NM5be8kI1kbat8eyZOW4V9dvynbIbxqiV4Q";
+// const devToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0YWRtaW4xIiwidXNlcklkIjo5MSwicm9sZSI6ImFkbWluIn0.MLD1gmEeHBsvPT0erjUZbo0P5akYmu5JAf_9elAR6vKho7A7tz_NM5be8kI1kbat8eyZOW4V9dvynbIbxqiV4Q";
 
 export const Admin = () => {
   let history = useHistory();

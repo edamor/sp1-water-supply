@@ -9,7 +9,6 @@ export const RoleFilter = ({children, ...rest}) => {
 
   let role = localStorage.getItem("role");
 
-  console.log("role filter");
   console.log(role);
 
   useEffect(() => {

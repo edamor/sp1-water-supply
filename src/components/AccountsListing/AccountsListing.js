@@ -2,11 +2,9 @@ import { useState } from "react"
 import { useTableSort } from "../../hooks/useTableSort";
 import { ArrowUp, ArrowDown } from "../../pages/main/Accounts/SvgIcons";
 
-
-export const AccountsListing = ({accounts}) => {
+export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
 
   const [sortBy, setSortBy] = useState("");
-  // const [arrow, setArrow] = useState({accountNumber: "up"});
 
   const { array, arrow } = useTableSort({
     data: accounts,
@@ -56,15 +54,22 @@ export const AccountsListing = ({accounts}) => {
   }
 
 
+
+  // function handleNewBill(account) {
+  //   selectAccount(account);
+  //   setShowModal(true);
+  // }
+
+
   return (
     <table className="table table-hover table-striped w-100 align-middle" >
       <colgroup>
-        <col style={{ width: "16%"}} />
-        <col style={{ width: "22%"}} />
+        <col style={{ width: "18%"}} />
+        <col style={{ width: "25%"}} />
         <col style={{ width: "15%"}} />
         <col style={{ width: "12.5%"}} />
         <col style={{ width: "12.5%"}} />
-        <col style={{ width: "22%"}} />
+        <col style={{ width: "17%"}} />
       </colgroup>
       <thead>
         <tr>
@@ -73,6 +78,7 @@ export const AccountsListing = ({accounts}) => {
               style={{cursor: "pointer"}} 
               className="d-flex w-100 justify-content-between align-items-center py-2" 
               onClick={sortByAccountNumber}
+              title="Sort by Account No."
             >
               <div>
                 Account No.
@@ -85,6 +91,7 @@ export const AccountsListing = ({accounts}) => {
               style={{cursor: "pointer"}} 
               className="d-flex w-100 justify-content-between align-items-center py-2" 
               onClick={sortByFullName}
+              title="Sort by Full Name"
             >
               <div>Full Name</div>
               {arrow?.fullName && arrowIcons[arrow.fullName]}
@@ -95,6 +102,7 @@ export const AccountsListing = ({accounts}) => {
               style={{cursor: "pointer"}} 
               className="d-flex w-100 justify-content-between align-items-center py-2" 
               onClick={sortByBarangay}
+              title="Sort by Barangay"
             >
               <div>Barangay</div>
               {arrow?.barangay && arrowIcons[arrow.barangay]}
@@ -105,16 +113,18 @@ export const AccountsListing = ({accounts}) => {
               style={{cursor: "pointer"}} 
               className="d-flex w-100 justify-content-between align-items-center py-2" 
               onClick={sortByLastBillReading}
+              title="Sort by Previous Reading"
             >
               <div>Reading</div>
               {arrow?.lastBillReading && arrowIcons[arrow.lastBillReading]}
             </div>
           </th>
-          <th scope="col" className="my-0 py-0">
+          <th scope="col" className="my-0 py-0">  
             <div 
               style={{cursor: "pointer"}} 
               className="d-flex w-100 justify-content-between align-items-center py-2" 
               onClick={sortByLastBillPeriodTo}
+              title="Sort by Month Covered of Last Bill"
             >
               <div>Month</div>
               {arrow?.lastBillPeriodTo && arrowIcons[arrow.lastBillPeriodTo]}
@@ -147,18 +157,16 @@ export const AccountsListing = ({accounts}) => {
                   new Date(item.lastBillPeriodTo).toDateString().substring(4,7)
                 }
               </td>
-              <td className="d-flex justify-content-around">
+              <td className="d-flex justify-content-center">
                 <button
                   type="button"
                   className="btn btn-sm btn-primary px-2"
+                  onClick={() => {
+                    selectAccount(item);
+                    setShowModal(true);
+                  }}
                 >
-                  View
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-sm btn-success px-2"
-                >
-                  Issue Bill
+                  View Details
                 </button>
               </td>
             </tr>
