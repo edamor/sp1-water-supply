@@ -110,9 +110,9 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <div className="mr-1 ">Water</div>
-        <div className="mr-1 ">Supply</div>
-        <div className="mr-1 ">System</div>
+        <span className="mr-1 navbar-brand">Water</span>
+        <span className="mr-1 navbar-brand">Supply</span>
+        <span className="mr-1 navbar-brand">System</span>
         <button 
           className="navbar-toggler" 
           type="button" 
