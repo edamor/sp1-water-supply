@@ -13,7 +13,7 @@ export const SuccessModal = ({setShowModal, setValues}) => {
       accountNumber: "",
       meterSerialNumber: "",
       fullName: "",
-      mobileNumber: "",
+      mobileNumber: "+63",
       barangay: "POB",
       address: "Poblacion, Alcantara, Romblon",
       existing: false, 
