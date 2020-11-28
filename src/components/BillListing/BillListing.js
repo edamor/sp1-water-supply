@@ -43,7 +43,7 @@ export const BillListing = ({bills, viewBill}) => {
                 setSelectedYear(e.target.value)
               }}
             >
-              {years.map(item => <option value={item.value}>{item.name}</option>)}
+              {years.map(item => <option key={item.name} value={item.value}>{item.name}</option>)}
             </select>     
 
           </th>
