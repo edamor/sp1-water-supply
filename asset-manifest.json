@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/sp1-water-supply/static/css/main.4d33f262.chunk.css",
-    "main.js": "/sp1-water-supply/static/js/main.9fd3b809.chunk.js",
-    "main.js.map": "/sp1-water-supply/static/js/main.9fd3b809.chunk.js.map",
-    "runtime-main.js": "/sp1-water-supply/static/js/runtime-main.b0d993fd.js",
-    "runtime-main.js.map": "/sp1-water-supply/static/js/runtime-main.b0d993fd.js.map",
-    "static/js/2.3b2c3d0b.chunk.js": "/sp1-water-supply/static/js/2.3b2c3d0b.chunk.js",
-    "static/js/2.3b2c3d0b.chunk.js.map": "/sp1-water-supply/static/js/2.3b2c3d0b.chunk.js.map",
-    "static/js/3.15bc9698.chunk.js": "/sp1-water-supply/static/js/3.15bc9698.chunk.js",
-    "static/js/3.15bc9698.chunk.js.map": "/sp1-water-supply/static/js/3.15bc9698.chunk.js.map",
-    "index.html": "/sp1-water-supply/index.html",
-    "static/css/main.4d33f262.chunk.css.map": "/sp1-water-supply/static/css/main.4d33f262.chunk.css.map",
-    "static/js/2.3b2c3d0b.chunk.js.LICENSE.txt": "/sp1-water-supply/static/js/2.3b2c3d0b.chunk.js.LICENSE.txt",
-    "static/media/accounts.15c1b769.png": "/sp1-water-supply/static/media/accounts.15c1b769.png",
-    "static/media/alcantara-seal.a1037ced.png": "/sp1-water-supply/static/media/alcantara-seal.a1037ced.png",
-    "static/media/register.c0fea52c.png": "/sp1-water-supply/static/media/register.c0fea52c.png",
-    "static/media/statement.a5d35e3b.jpg": "/sp1-water-supply/static/media/statement.a5d35e3b.jpg"
+    "main.css": "/static/css/main.4d33f262.chunk.css",
+    "main.js": "/static/js/main.785af8c0.chunk.js",
+    "main.js.map": "/static/js/main.785af8c0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.53b297f7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.53b297f7.js.map",
+    "static/js/2.3b2c3d0b.chunk.js": "/static/js/2.3b2c3d0b.chunk.js",
+    "static/js/2.3b2c3d0b.chunk.js.map": "/static/js/2.3b2c3d0b.chunk.js.map",
+    "static/js/3.15bc9698.chunk.js": "/static/js/3.15bc9698.chunk.js",
+    "static/js/3.15bc9698.chunk.js.map": "/static/js/3.15bc9698.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.4d33f262.chunk.css.map": "/static/css/main.4d33f262.chunk.css.map",
+    "static/js/2.3b2c3d0b.chunk.js.LICENSE.txt": "/static/js/2.3b2c3d0b.chunk.js.LICENSE.txt",
+    "static/media/accounts.15c1b769.png": "/static/media/accounts.15c1b769.png",
+    "static/media/alcantara-seal.a1037ced.png": "/static/media/alcantara-seal.a1037ced.png",
+    "static/media/register.c0fea52c.png": "/static/media/register.c0fea52c.png",
+    "static/media/statement.a5d35e3b.jpg": "/static/media/statement.a5d35e3b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b0d993fd.js",
+    "static/js/runtime-main.53b297f7.js",
     "static/js/2.3b2c3d0b.chunk.js",
     "static/css/main.4d33f262.chunk.css",
-    "static/js/main.9fd3b809.chunk.js"
+    "static/js/main.785af8c0.chunk.js"
   ]
 }
