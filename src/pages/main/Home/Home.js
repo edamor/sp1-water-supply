@@ -21,7 +21,7 @@ export const Home = () => {
       cardImg: register,
       cardTitle: "Create an account",
       cardText: "Accounts from the old system can be registered in this system. New accounts can also be registered easily. Click the button below to learn more.",
-      buttonLabel: "Go to Create Account Page",
+      buttonLabel: "Go to Registration Page",
       handleClick: () => history.push(path + "/accounts/new")
     },
     {
@@ -29,7 +29,7 @@ export const Home = () => {
       cardImg: accounts,
       cardTitle: "View registered accounts",
       cardText: "All accounts can be viewed in a table format, which also comes with sorting features. The sorting can be toggled by clicking a column header. Click the button below to see.",
-      buttonLabel: "View Accounts",
+      buttonLabel: "Go to Accounts Page",
       handleClick: () => history.push(path + "/accounts")
     },
     {
@@ -37,8 +37,8 @@ export const Home = () => {
       cardImg: statement,
       cardTitle: "Issue a new statement",
       cardText: "The system will only be needing the current meter reading. All the other values will be auto-computed and account holders will be notified through SMS.",
-      buttonLabel: "Issue Statements",
-      handleClick: () => history.push(path + "/accounts")
+      buttonLabel: "Go to Statements Page",
+      handleClick: () => history.push(path + "/statements")
     }
   ]
 

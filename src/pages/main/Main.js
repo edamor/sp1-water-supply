@@ -7,6 +7,7 @@ import { BillsPage } from "../BillsPage/BillsPage";
 import { CustomerPage } from "../Customer/CustomerPage";
 import { AccountsPage } from "./AccountsPage/AccountsPage";
 import { Home } from "./Home/Home";
+import { Statements } from "./Statements/Statements";
 
 
 export const Main = () => {
@@ -33,7 +34,10 @@ export const Main = () => {
             </Route>
             <Route path="/admin/accounts">
               <AccountsPage />  
-            </Route>  
+            </Route>
+            <Route path="/admin/statements">
+              <Statements />
+            </Route>
           </Switch>
         )
         :

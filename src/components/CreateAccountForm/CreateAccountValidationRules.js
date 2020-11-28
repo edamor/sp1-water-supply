@@ -2,9 +2,15 @@
 
 export const validate = (values) => {
   let errors = {};
+  const mobileRegex = /^([+0]63)?[9]{1}[0-9]{9}$/;
+  const accountRegex = /^[0-9]{4}\-?[0-9]{2}\-?[0-9]+/;
 
   if (!values.accountNumber) {
     errors.accountNumber = "Account Number is required"
+  }
+  
+  if (!accountRegex.test(values.accountNumber)) {
+    errors.accountNumber = "Invalid format (valid ex. 2016-09-03)"
   }
 
   if (!values.fullName) {
@@ -15,8 +21,12 @@ export const validate = (values) => {
     errors.mobileNumber = "Mobile Number is required"
   }
   
-  if (values.mobileNumber?.length < 10) {
-    errors.mobileNumber = "Mobile Number must be 10 digits long"
+  if (!mobileRegex.test(values.mobileNumber)) {
+    errors.mobileNumber = "Invalid mobile number (valid ex. +639065338541)"
+  }
+
+  if (values.mobileNumber?.length < 13) {
+    errors.mobileNumber = "Mobile Number is too short"
   }
 
   if (!values.address) {

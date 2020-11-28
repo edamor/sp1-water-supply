@@ -4,7 +4,12 @@ import { useEffect, useState } from "react"
 export const AccountNumberField = ({values, setValues, errors}) => {
 
   function handleChange(e) {
-    setValues({...values, accountNumber: e.target.value.trim()})
+    const regex = /^[0-9 -]*$/;
+    if (regex.test(e.target.value)) {
+      setValues({...values, accountNumber: e.target.value.trim()})
+    } else {
+      e.target.value.trim()
+    }
   };
 
   const [state, setState] = useState("form-control");

@@ -4,8 +4,9 @@ import { useEffect, useState } from "react"
 export const MobileNumberField = ({values, setValues, errors}) => {
 
   function handleChange(e) {
-    if (e.target.value.length <= 10) {
-      setValues({...values, mobileNumber: e.target.value.trim()})
+    const regex = /^([+0]63)?[0-9]*$/;
+    if (regex.test(e.target.value) && e.target.value.length < 14 && e.target.value.length >= 3) {
+      setValues({...values, mobileNumber: e.target.value})
     } else e.target.value.trim();
   };
 
@@ -28,7 +29,7 @@ export const MobileNumberField = ({values, setValues, errors}) => {
         Mobile Number
       </label>
       <input 
-        type="number" 
+        type="text" 
         className={state}
         id="mobileNumberId"
         placeholder="ex. 9179876543"

@@ -19,11 +19,13 @@ export const CreateAccount = () => {
   const [values, setValues] = useState({
     barangay: "POB",
     address: "Poblacion, Alcantara, Romblon",
+    mobileNumber: "+63",
     existing: false, 
     lastBillNumber: 0, 
     lastBillReading: 0,
     lastBillPeriodTo: 0
   });
+
   const [errors, setErrors] = useState({});
 
   const [loading, setLoading] = useState(false);

@@ -7,18 +7,39 @@ export const Navbar = () => {
 
   let role = localStorage.getItem("role");
 
-  let adminHomeTo = {
-    pathname: "/admin",
-    state: { from: history.location} 
-  };
-  let adminAccountsTo = {
-    pathname: "/admin/accounts",
-    state: { from: history.location} 
-  };
-  let adminCreateAccountTo = {
-    pathname: "/admin/accounts/new",
-    state: { from: history.location} 
-  };
+  const adminNavItems = [
+    {
+      name: "Home", 
+      to: {
+        pathname: "/admin",
+        state: { from: history.location}
+      }
+    },
+    {
+      name: "Accounts",
+      to: {
+        pathname: "/admin/accounts",
+        state: { from: history.location}
+      } 
+    },
+    {
+      name: "Register",
+      to: {
+        pathname: "/admin/accounts/new",
+        state: { from: history.location}
+      } 
+    }
+  ]
+  // ,
+  //   {
+  //     name: "Statements",
+  //     to: {
+  //       pathname: "/admin/statements",
+  //       state: { from: history.location} 
+  //     }
+  //   }
+
+  
   let customerHomeTo = {
     pathname: "/customer",
     state: { from: history.location} 
@@ -33,30 +54,17 @@ export const Navbar = () => {
     (r === "admin") ?
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav d-flex w-75">
-          <NavLink 
-            className="nav-link mx-2"
-            activeClassName="active"
-            exact
-            to={adminHomeTo}
-          >
-            Home
-          </NavLink>
-          <NavLink 
-            className="nav-link mx-2"
-            activeClassName="active"
-            exact
-            to={adminAccountsTo}
-          >
-            Accounts
-          </NavLink>
-          <NavLink 
-            className="nav-link mx-2"
-            activeClassName="active"
-            exact
-            to={adminCreateAccountTo}
-          >
-            Register Account
-          </NavLink>
+          {adminNavItems.map(item => (
+            <NavLink
+              key={item.name} 
+              className="nav-link mx-2"
+              activeClassName="active"
+              exact
+              to={item.to}
+            >
+              {item.name}
+            </NavLink>
+          ))}
         </div>
         <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
           <button
