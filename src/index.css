@@ -22,3 +22,14 @@ code {
   background-repeat: no-repeat;
   background-size: 1rem 1rem;
 }
+
+
+.font-l {
+  font-size: 1.2rem;
+}
+.font-xl {
+  font-size: 1.4rem;
+}
+.font-xxl {
+  font-size: 1.6rem;
+}
