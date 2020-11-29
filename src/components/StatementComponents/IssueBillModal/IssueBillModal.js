@@ -26,7 +26,7 @@ export const IssueBillModal = ({payload, setPayload, setShowModal}) => {
   }
   
   function handlePresentReading(e) {
-    if (e.target.value.length < 4 && e.target.value.length > 0) {
+    if (e.target.value.length < 4) {
       setPayload({
         ...payload,
         readingPresent: parseInt(e.target.value)
@@ -124,7 +124,7 @@ export const IssueBillModal = ({payload, setPayload, setShowModal}) => {
                 <p className="font-weight-bold">Used: </p>
                 <div className="row align-items-center h-50">
                   <p className="my-0 py-0"> 
-                    {`${payload.readingPresent - foundAccount.lastBillReading} Cu. Meters`} 
+                    {`${(payload.readingPresent - foundAccount.lastBillReading) || 0} Cu. Meters`} 
                   </p>
                 </div>
               </div>
