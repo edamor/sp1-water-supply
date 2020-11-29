@@ -2,20 +2,28 @@ import { useState } from "react";
 import { useTableSort } from "../../hooks/useTableSort";
 import { ArrowUp, ArrowDown } from "../../pages/main/Accounts/SvgIcons";
 
-export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
+export const StatementsListing = ({accounts, setShowModal, payload, setPayload}) => {
 
 
   const [sortBy, setSortBy] = useState("");
+
+  
 
   const { array, arrow } = useTableSort({
     data: accounts,
     sortBy: sortBy
   });
 
+  
+
   const arrowIcons = {
     up: <ArrowUp />,
     down: <ArrowDown />
-  }
+  };
+
+  
+
+
 
 
   function sortByAccountNumber() {
@@ -39,39 +47,21 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
       setSortBy("barangayAsc")
     }
   }
-  function sortByLastBillReading() {
-    if (sortBy === "lastBillReadingAsc") {
-      setSortBy("lastBillReadingDesc")
-    } else {
-      setSortBy("lastBillReadingAsc")
-    }
-  }
-  function sortByLastBillPeriodTo() {
-    if (sortBy === "lastBillPeriodToAsc") {
-      setSortBy("lastBillPeriodToDesc")
-    } else {
-      setSortBy("lastBillPeriodToAsc")
-    }
-  }
 
 
 
-  // function handleNewBill(account) {
-  //   selectAccount(account);
-  //   setShowModal(true);
-  // }
 
 
   return (
     <table className="table table-hover table-striped w-100 align-middle" >
-      <colgroup>
+      {/* <colgroup>
         <col style={{ width: "18%"}} />
         <col style={{ width: "25%"}} />
         <col style={{ width: "15%"}} />
         <col style={{ width: "12.5%"}} />
         <col style={{ width: "12.5%"}} />
         <col style={{ width: "17%"}} />
-      </colgroup>
+      </colgroup> */}
       <thead>
         <tr>
           <th scope="col" className="my-0 py-0">
@@ -109,28 +99,6 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
               {arrow?.barangay && arrowIcons[arrow.barangay]}
             </div>
           </th>
-          <th scope="col" className="my-0 py-0">
-            <div 
-              style={{cursor: "pointer"}} 
-              className="d-flex w-100 justify-content-between align-items-center py-2" 
-              onClick={sortByLastBillReading}
-              title="Sort by Previous Reading"
-            >
-              <div>Reading</div>
-              {arrow?.lastBillReading && arrowIcons[arrow.lastBillReading]}
-            </div>
-          </th>
-          <th scope="col" className="my-0 py-0">  
-            <div 
-              style={{cursor: "pointer"}} 
-              className="d-flex w-100 justify-content-between align-items-center py-2" 
-              onClick={sortByLastBillPeriodTo}
-              title="Sort by Month Covered of Last Bill"
-            >
-              <div>Month</div>
-              {arrow?.lastBillPeriodTo && arrowIcons[arrow.lastBillPeriodTo]}
-            </div>
-          </th>
           <th scope="col" className="my-0 py-0"></th>
         </tr>
       </thead>
@@ -147,27 +115,19 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
               <td>
                 {item.address.split(",")[0]}
               </td>
-              <td>
-                {item.lastBillReading}
-              </td>
-              <td>
-                {
-                  item.lastBillPeriodTo === 0 ?
-                  ""
-                  :
-                  new Date(item.lastBillPeriodTo).toDateString().substring(4,7)
-                }
-              </td>
               <td className="d-flex justify-content-center">
                 <button
                   type="button"
                   className="btn btn-sm btn-primary px-2"
                   onClick={() => {
-                    selectAccount(item);
+                    setPayload({
+                      ...payload,
+                      accountNumber: item.accountNumber
+                    });
                     setShowModal(true);
                   }}
                 >
-                  View Details
+                  Issue Statement
                 </button>
               </td>
             </tr>

@@ -17,27 +17,31 @@ export const Navbar = () => {
     },
     {
       name: "Accounts",
-      to: {
-        pathname: "/admin/accounts",
-        state: { from: history.location}
-      } 
+      subMenu: [
+        {
+          name: "View Accounts",
+          to: {
+            pathname: "/admin/accounts",
+            state: { from: history.location}
+          } 
+        },
+        {
+          name: "Register Account",
+          to: {
+            pathname: "/admin/accounts/new",
+            state: { from: history.location}
+          } 
+        }
+      ]
     },
     {
-      name: "Register",
+      name: "Statements",
       to: {
-        pathname: "/admin/accounts/new",
-        state: { from: history.location}
-      } 
+        pathname: "/admin/statements",
+        state: { from: history.location} 
+      }
     }
   ]
-  // ,
-  //   {
-  //     name: "Statements",
-  //     to: {
-  //       pathname: "/admin/statements",
-  //       state: { from: history.location} 
-  //     }
-  //   }
 
   
   let customerHomeTo = {
@@ -49,22 +53,57 @@ export const Navbar = () => {
     state: { from: history.location} 
   };
 
+  // <NavLink
+  //   key={item.name} 
+  //   className="nav-link mx-2"
+  //   activeClassName="active"
+  //   exact
+  //   to={item.to}
+  // >
+  //   {item.name}
+  // </NavLink>
+
 
   const showNav = (r) => (
     (r === "admin") ?
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav d-flex w-75">
-          {adminNavItems.map(item => (
-            <NavLink
-              key={item.name} 
-              className="nav-link mx-2"
-              activeClassName="active"
-              exact
-              to={item.to}
-            >
-              {item.name}
-            </NavLink>
-          ))}
+          {adminNavItems.map(item => {
+            if (item.name === "Accounts") {
+              return (
+                <div className="nav-item dropdown" key={item.name}>
+                  <button type="button" className="btn btn-link btn-light nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
+                    {item.name}
+                  </button>
+                    <div className="dropdown-menu">
+                      {item.subMenu.map(subItem => (
+                        <NavLink
+                          key={subItem.name} 
+                          className="nav-link dropdown-item"
+                          activeClassName="active"
+                          exact
+                          to={subItem.to}
+                        >
+                          {subItem.name}
+                        </NavLink>
+                      ))}
+                    </div>
+                </div>
+              )
+            } else {
+              return (
+                <NavLink
+                  key={item.name} 
+                  className="nav-link mx-2"
+                  activeClassName="active"
+                  exact
+                  to={item.to}
+                >
+                  {item.name}
+                </NavLink>                
+              )
+            }
+          })}
         </div>
         <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
           <button

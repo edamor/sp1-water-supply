@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { AllAccountsContextProvider } from "../../contexts/AllAccountsContext";
 import { BillProvider } from "../../contexts/BillContext";
 import { CustomerDataProvider } from "../../contexts/CustomerDataContext";
 import { BillsPage } from "../BillsPage/BillsPage";
 import { CustomerPage } from "../Customer/CustomerPage";
 import { AccountsPage } from "./AccountsPage/AccountsPage";
 import { Home } from "./Home/Home";
-import { Statements } from "./Statements/Statements";
+import { StatementsPage } from "./StatementsPage/StatementsPage";
 
 
 export const Main = () => {
@@ -28,17 +29,19 @@ export const Main = () => {
       {
         (isAdmin) ?
         (
-          <Switch>
-            <Route exact path="/admin">
-              <Home />
-            </Route>
-            <Route path="/admin/accounts">
-              <AccountsPage />  
-            </Route>
-            <Route path="/admin/statements">
-              <Statements />
-            </Route>
-          </Switch>
+          <AllAccountsContextProvider>
+            <Switch>
+              <Route exact path="/admin">
+                <Home />
+              </Route>
+              <Route path="/admin/accounts">
+                <AccountsPage />  
+              </Route>
+              <Route path="/admin/statements">
+                <StatementsPage />
+              </Route>
+            </Switch>
+          </AllAccountsContextProvider>
         )
         :
         (

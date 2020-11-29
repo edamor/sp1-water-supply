@@ -18,8 +18,7 @@ export const CustomerPage = () => {
   });
 
 
-  const totalAmount = useConsumptionAmount({consumption: data?.lastBillReading});
-  console.log(totalAmount);
+  const {total} = useConsumptionAmount({consumption: data?.lastBillReading});
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   
@@ -62,7 +61,7 @@ export const CustomerPage = () => {
         </dd>
         <dt className="col-sm-3">Amount Due</dt>
         <dd className="col-sm-9">
-          {`Php ${totalAmount}.00`}
+          {`Php ${total}.00`}
         </dd>
         <div>
         <button

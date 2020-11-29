@@ -1,3 +1,4 @@
+import { useConsumptionAmount } from "../../hooks/useConsumptionAmount";
 import "./style.css"
 
 
@@ -8,6 +9,8 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
   }
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const {total} = useConsumptionAmount(account.lastBillReading);
 
   return (
     <div className="account-details-modal">
@@ -26,7 +29,7 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
           </div>
           <div className="modal-body p-4">
             <div className="row g-4">
-              <div className="col-10 h5">Account Information</div>
+              <div className="col-10 h4 font-weight-normal">Account Information</div>
               <div className="col-md-5 d-flex justify-content-between mr-auto">
                 <span className="font-weight-bold">Full Name:</span>
                 <span>{account.fullName}</span> 
@@ -37,7 +40,11 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
               </div>
               <div className="col-md-5 d-flex justify-content-between mr-auto">
                 <span className="font-weight-bold">Mobile No.: </span>
-                <span> {`0${account.mobileNumber}`} </span>
+                <span>
+                  {
+                    `${account.mobileNumber.substring(0,3)} ${account.mobileNumber.substring(3,6)}-${account.mobileNumber.substring(6,9)}-${account.mobileNumber.substring(9)}`
+                  }
+                </span>
               </div>
               <div className="col-md-5 d-flex justify-content-between">
                 <span className="font-weight-bold">Meter Serial No.: </span>
@@ -46,17 +53,25 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
             </div>
             <hr className="my-4" />
             <div className="row g-4">
-              <div className="col-12 h6">Previous Statement Summary</div>
-              <div className="col-md-5 d-flex justify-content-between mr-auto">
+              <div className="col-6 h5">Previous Statement Summary</div>
+              <div className="col-md-5 d-flex justify-content-between ml-auto">
                 <span className="font-weight-bold">Month Covered:</span>
                   {
                     account.lastBillPeriodTo === 0 ? "-" 
-                    : months[new Date(account.lastBillPeriodTo).getMonth()]
+                    : `${months[new Date(account.lastBillPeriodTo).getMonth()-1]} - ${months[new Date(account.lastBillPeriodTo).getMonth()]}`
                   }
+              </div>
+              <div className="col-md-5 d-flex justify-content-between mr-auto">
+                <span className="font-weight-bold">Amount Due: </span>
+                <span>
+                  {account.lastBillReading === 0 ? "-" : `Php ${total}.00`}
+                </span>
               </div>
               <div className="col-md-5 d-flex justify-content-between">
                 <span className="font-weight-bold">Meter Reading: </span>
-                <span> {account.lastBillReading === 0 ? "-" : account.lastBillReading} </span>
+                <span> 
+                  {account.lastBillReading === 0 ? "-" : `${account.lastBillReading} Cu. Meters`}
+                </span>
               </div>
             </div>
           </div>
