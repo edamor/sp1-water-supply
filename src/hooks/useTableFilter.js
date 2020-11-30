@@ -9,7 +9,7 @@ export const useTableFilter = ({data, filter}) => {
 
 
   useEffect(() => {
-    let filtered = data.filter(item => (item.lastBillPeriodTo !== filter));
+    let filtered = data.filter(item => (item.lastBillPeriodTo < filter));
 
     setState({
       filteredArr: filtered

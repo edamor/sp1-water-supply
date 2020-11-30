@@ -1,13 +1,15 @@
+/* eslint-disable no-useless-escape */
 
-
+// ^[0-9]{4}\-?[0-9]{2}\-?[0-9]+
 export const validate = (values) => {
   let errors = {};
   const mobileRegex = /^([+0]63)?[9]{1}[0-9]{9}$/;
-  const accountRegex = /^[0-9]{4}\-?[0-9]{2}\-?[0-9]+/;
+  const accountRegex = /^[0-9]{4}(-[0-9]{2})\-?[0-9]+/;
 
   if (!values.accountNumber) {
     errors.accountNumber = "Account Number is required"
   }
+
   
   if (!accountRegex.test(values.accountNumber)) {
     errors.accountNumber = "Invalid format (valid ex. 2016-09-03)"

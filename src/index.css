@@ -33,3 +33,10 @@ code {
 .font-xxl {
   font-size: 1.6rem;
 }
+.font-3xl {
+  font-size: 1.8rem;
+}
+
+.bg-paper {
+  background-color: #efeeee;
+}

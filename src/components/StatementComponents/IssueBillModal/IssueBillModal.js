@@ -4,9 +4,9 @@ import { useConsumptionAmount } from "../../../hooks/useConsumptionAmount";
 import "./style.css";
 
 
-const ISSUE_BILL_URI = "https://sp1-blue-sparrow.herokuapp.com/api/v1/bill-management/bills/issue"
 
 export const IssueBillModal = ({payload, setPayload, setShowModal}) => {
+  const ISSUE_BILL_URI = "https://sp1-blue-sparrow.herokuapp.com/api/v1/bill-management/bills/issue"
   const TOKEN = localStorage.getItem("token");
 
   const { accounts } = useAccountsContext();
