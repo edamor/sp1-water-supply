@@ -20,7 +20,7 @@ export const PeriodSelectField = ({payload, setPayload, monthIndex}) => {
 
 
   return (
-    <div className="row">
+    <div className="row py-4">
       <div className="col-md-4 d-flex flex-column justify-content-center">
         <p className="h4">Select Statement Period:</p>
       </div>

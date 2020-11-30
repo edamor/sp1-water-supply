@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AccountDetailsModal } from "../../../components/AccountDetailsModal/AccountDetailsModal";
 import { AccountsListing } from "../../../components/AccountsListing/AccountsListing"
 import Loader from "../../../components/Loader/Loader";
-import { useAccountsContext } from "../../../contexts/AllAccountsContext";
+import { useFetch } from "../../../hooks/useFetch";
 
 
 export const Accounts = () => {
+  const TOKEN = localStorage.getItem("token");
+  const API = `/account-management/accounts`;
+  const { data } = useFetch({
+    endpoint: API,
+    token: TOKEN
+  });
+
+
+
   
-  const [loading, setLoading] = useState(true);
-
-  const { accounts } = useAccountsContext();
-
   const [showModal, setShowModal] = useState(false);
   const [viewAccount, setViewAccount] = useState({});
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-  })
+  
 
   return (
     <>
@@ -28,15 +29,15 @@ export const Accounts = () => {
           Accounts
         </p>
         {
-          loading ?
-          <div className="row py-4">
+          !data ?
+          <div className="row py-4 h-50">
             <Loader />
           </div>
           :
           <div className="row pt-2">
             <div className="col-12 col-md-10 m-auto">
               <AccountsListing 
-                accounts={accounts} 
+                accounts={data} 
                 setShowModal={setShowModal} 
                 selectAccount={setViewAccount} 
               />

@@ -74,8 +74,8 @@ export const Admin = () => {
         <button
           type="button"
           className="btn btn-primary w-100"
-          // onClick={doAdminLogin}
-          onClick={developmentMode}
+          onClick={doAdminLogin}
+          // onClick={developmentMode}
         >
           <span>Login</span>
         </button>

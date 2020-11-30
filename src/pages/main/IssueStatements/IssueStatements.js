@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import Loader from "../../../components/Loader/Loader";
 import { ImportantNotes } from "../../../components/StatementComponents/ImportantNotes";
-import { IssueBillModal } from "../../../components/StatementComponents/IssueBillModal/IssueBillModal";
 import { NewBillModal } from "../../../components/StatementComponents/NewBillModal/NewBillModal";
 import { PeriodSelectField } from "../../../components/StatementComponents/PeriodSelectField";
 import { StatementsListing } from "../../../components/StatementsListing/StatementsListing";
-import { useAccountsContext } from "../../../contexts/AllAccountsContext";
+import { useAccountsForBillingContext } from "../../../contexts/AccountsForBillingContext";
 import { useBillingDate } from "../../../contexts/BillingDateContext";
 import { useFetch } from "../../../hooks/useFetch";
 import { useTableFilter } from "../../../hooks/useTableFilter";
 
 
-  
+
+const d = new Date();  
 
 export const IssueStatements = () => {
   const TOKEN = localStorage.getItem("token");
@@ -21,17 +21,12 @@ export const IssueStatements = () => {
     token: TOKEN
   });
 
-  const {accounts, setAccounts} = useAccountsContext();
+  const {accounts, setAccounts } = useAccountsForBillingContext();
 
- 
 
-  const [loading, setLoading] = useState(true);
-
-  const months = useBillingDate();
-
-  const d = new Date();
   const monthIndex = d.getMonth() - 1;
-
+  const months = useBillingDate();
+  
   const [payload, setPayload] = useState({
      accountNumber: "",
      periodFrom: months[monthIndex].value.periodFrom,
@@ -39,24 +34,23 @@ export const IssueStatements = () => {
      readingPresent: 0,
      chargeOthers: 0
   })
-
+  
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    if (data) {
+      setAccounts(data)
+    }
+  }, [data, setAccounts])
+
   
   
-  const {filteredArr} = useTableFilter({
-    data: accounts,
+  const { filteredArr } = useTableFilter({
+    data: accounts || [],
     filter: payload.periodTo
   });
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (data !== null) {
-        setAccounts(data);
-      }
-      setLoading(false)
-    }, 1500);
-  }, [data, setAccounts])
+  
 
 
   return (
@@ -82,7 +76,7 @@ export const IssueStatements = () => {
       />
 
       {
-        loading ? 
+        !data ? 
         <Loader />
         :
         <StatementsListing 

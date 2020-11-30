@@ -53,15 +53,13 @@ export const StatementsListing = ({accounts, setShowModal, payload, setPayload})
 
 
   return (
-    <table className="table table-hover table-striped w-100 align-middle" >
-      {/* <colgroup>
-        <col style={{ width: "18%"}} />
+    <table className="table table-hover table-striped w-100 align-middle mb-5" >
+      <colgroup>
         <col style={{ width: "25%"}} />
-        <col style={{ width: "15%"}} />
-        <col style={{ width: "12.5%"}} />
-        <col style={{ width: "12.5%"}} />
-        <col style={{ width: "17%"}} />
-      </colgroup> */}
+        <col style={{ width: "30%"}} />
+        <col style={{ width: "25%"}} />
+        <col style={{ width: "20%"}} />
+      </colgroup>
       <thead>
         <tr>
           <th scope="col" className="my-0 py-0">

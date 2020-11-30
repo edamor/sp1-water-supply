@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAccountsContext } from "../../../contexts/AllAccountsContext";
+import { useAccountsForBillingContext } from "../../../contexts/AccountsForBillingContext";
 import { useBillingDate } from "../../../contexts/BillingDateContext";
 import { useConsumptionAmount } from "../../../hooks/useConsumptionAmount";
 import "./style.css";
@@ -9,7 +9,7 @@ import { SubmitNewBillButton } from "./SubmitNewBillButton";
 
 export const NewBillModal = ({payload, setPayload, setShowModal}) => {
 
-  const { accounts } = useAccountsContext();
+  const { accounts } = useAccountsForBillingContext();
   const foundAccount = accounts.find(item => item.accountNumber === payload.accountNumber);
   const months = useBillingDate();
   const billingDate = months.find(item => item.value.periodTo === payload.periodTo);
@@ -305,7 +305,7 @@ export const NewBillModal = ({payload, setPayload, setShowModal}) => {
               setIsLoading={setIsLoading}
               errors={errors}
               setErrors={setErrors}
-              handleClose={handleClose}
+              setShowModal={setShowModal}
             />
           </div>
 

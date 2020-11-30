@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
-import { AllAccountsContextProvider } from "../../contexts/AllAccountsContext";
 import { BillProvider } from "../../contexts/BillContext";
 import { CustomerDataProvider } from "../../contexts/CustomerDataContext";
 import { BillsPage } from "../BillsPage/BillsPage";
@@ -24,24 +23,23 @@ export const Main = () => {
 
 
   return (
-    <div className="h-100">
+    <div className="h-100 pt-5 my-3"
+    >
       <Navbar />
       {
         (isAdmin) ?
         (
-          <AllAccountsContextProvider>
-            <Switch>
-              <Route exact path="/admin">
-                <Home />
-              </Route>
-              <Route path="/admin/accounts">
-                <AccountsPage />  
-              </Route>
-              <Route path="/admin/statements">
-                <StatementsPage />
-              </Route>
-            </Switch>
-          </AllAccountsContextProvider>
+          <Switch>
+            <Route exact path="/admin">
+              <Home />
+            </Route>
+            <Route path="/admin/accounts">
+              <AccountsPage />  
+            </Route>
+            <Route path="/admin/statements">
+              <StatementsPage />
+            </Route>
+          </Switch>
         )
         :
         (

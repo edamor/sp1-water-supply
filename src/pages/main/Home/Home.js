@@ -5,28 +5,23 @@ import register from "../../../images/register.png";
 import accounts from "../../../images/accounts.png";
 import statement from "../../../images/statement.jpg";
 import seal from "../../../images/alcantara-seal.png";
-import { useFetch } from "../../../hooks/useFetch";
-import { useEffect } from "react";
-import { useAccountsContext } from "../../../contexts/AllAccountsContext";
+import { useEffect, useState } from "react";
 import Loader from "../../../components/Loader/Loader";
 
 
 
 export const Home = () => {
-  const TOKEN = localStorage.getItem("token");
-  const API = `/account-management/accounts`;
-  const { data } = useFetch({
-    endpoint: API,
-    token: TOKEN
-  });
-
-  const {setAccounts} = useAccountsContext();
+  
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    if (data !== null) {
-      setAccounts(data);
-    }
-  })
+    let timeout = setTimeout(() => {
+      setShowLoader(false)
+    }, 1400);
+
+
+    return () => clearTimeout(timeout)
+  }, [])
 
 
 
@@ -63,7 +58,7 @@ export const Home = () => {
   return (
       <div className="container">
         {
-          !data ?
+          showLoader ?
           <Loader />
           :
           <div>

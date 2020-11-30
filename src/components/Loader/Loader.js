@@ -6,7 +6,7 @@ export default function Loader() {
   
 
   return (
-      <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "200px"}}>
+      <div className="d-flex w-100 align-items-center justify-content-center" style={{"height": "50vh"}}>
         <div className="spinner-grow mx-2" style={{
           width: "2.2rem",
           height : "2.2rem",

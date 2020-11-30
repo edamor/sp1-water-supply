@@ -72,7 +72,7 @@ export const Navbar = () => {
             if (item.name === "Accounts") {
               return (
                 <div className="nav-item dropdown" key={item.name}>
-                  <button type="button" className="btn btn-link btn-light nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
+                  <button type="button" className="btn btn-link nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
                     {item.name}
                   </button>
                     <div className="dropdown-menu">
@@ -84,7 +84,8 @@ export const Navbar = () => {
                           exact
                           to={subItem.to}
                         >
-                          {subItem.name}
+                          
+                            {subItem.name}
                         </NavLink>
                       ))}
                     </div>
@@ -155,7 +156,7 @@ export const Navbar = () => {
   
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-light">
       <div className="container-fluid">
         <span className="mr-1 navbar-brand">Water</span>
         <span className="mr-1 navbar-brand">Supply</span>

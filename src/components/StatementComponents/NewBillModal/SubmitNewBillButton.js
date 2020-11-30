@@ -1,17 +1,26 @@
-import { useAccountsContext } from "../../../contexts/AllAccountsContext";
+import { useAccountsForBillingContext } from "../../../contexts/AccountsForBillingContext";
 import { validateStatement } from "./NewBillValidationRules";
 
 
 
 
-export const SubmitNewBillButton = ({payload, account, isLoading, setIsLoading, errors, setErrors, handleClose}) => {
+export const SubmitNewBillButton = ({
+  payload, 
+  account, 
+  isLoading, 
+  setIsLoading, 
+  errors, 
+  setErrors, 
+  setShowModal}) => {
   const ISSUE_BILL_URI = "https://sp1-blue-sparrow.herokuapp.com/api/v1/bill-management/bills/issue"
   const TOKEN = localStorage.getItem("token");
 
+  const { accounts, setAccounts } = useAccountsForBillingContext();
 
   function onMouseDown() {
     setErrors(validateStatement(payload, account)) 
   }
+
   function onMouseUp() {
     setIsLoading(true)
     if (Object.keys(errors).length > 0) {
@@ -30,8 +39,9 @@ export const SubmitNewBillButton = ({payload, account, isLoading, setIsLoading, 
       .then(data => {
         if (data === "FIRST" || data === "SUCCEEDING") {
           setIsLoading(false)
-          handleClose();
+          setAccounts(accounts.filter(item => (item.accountNumber !== payload.accountNumber)))
           alert("Statement was successfully issued. Click Ok to continue.");
+          setShowModal(false);
         }
       })
       .catch(e => {
