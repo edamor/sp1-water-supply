@@ -5,6 +5,8 @@ import { tokenParser } from "../../../utils/TokenParser";
 
 const CUSTOMER_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/customer/login";
 
+const DEV_TOKEN="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMDIwLTAwLTAxIiwicm9sZSI6ImN1c3RvbWVyIiwiYWNjb3VudE5vIjoiMjAyMC0wMC0wMSIsImFjY291bnQiOnsiaWQiOjkxLCJhY2NvdW50TnVtYmVyIjoiMjAyMC0wMC0wMSIsImZ1bGxOYW1lIjoiSm9obiBDcnV6IiwibW9iaWxlTnVtYmVyIjoiKzYzOTE3NTAzNzQ1NyIsImFkZHJlc3MiOiJQb2JsYWNpb24sIEFsY2FudGFyYSwgUm9tYmxvbiIsImJhcmFuZ2F5IjoiUE9CIiwibGFzdEJpbGxOdW1iZXIiOjIsImxhc3RCaWxsUmVhZGluZyI6MTIsImxhc3RCaWxsUGVyaW9kVG8iOjE2MDY0OTI4MDAwMDAsIm1ldGVyU2VyaWFsTnVtYmVyIjoiMTFBMSAxMDAxIiwiZXhpc3RpbmciOmZhbHNlfX0.mV0ZxSER4xv7f8p561NiET3TUywhI7QdsJgqopAvq8lv62JUsJcg4UDAfrk3QafdhHLek9Kq-OBPOOnXTRnaOQ"
+
 export const Customer = () => {
   let history = useHistory();
 
@@ -63,6 +65,14 @@ export const Customer = () => {
     })
   };
 
+
+  const developmentMode = () => {
+    localStorage.setItem("token", DEV_TOKEN);
+    localStorage.setItem("role", tokenParser(DEV_TOKEN).role);
+    setActiveUser(tokenParser(DEV_TOKEN).account);
+    history.push("/");
+  };
+
   const loadingButton = () => {
     if (!loading) {
       return (
@@ -70,6 +80,7 @@ export const Customer = () => {
           type="button"
           className="btn btn-primary w-100"
           onClick={doCustomerLogin}
+        // onClick={developmentMode}
         >
           <span>Login</span>
         </button>
@@ -88,6 +99,8 @@ export const Customer = () => {
 
   
 
+
+  
 
 
   return (

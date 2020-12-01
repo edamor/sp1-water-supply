@@ -14,7 +14,7 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
 
   return (
     <div className="account-details-modal">
-      <div className="modal-dialog  modal-lg">
+      <div className="modal-dialog modal-dialog-centered modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <p className="modal-title h4" id="account-details-modal">
