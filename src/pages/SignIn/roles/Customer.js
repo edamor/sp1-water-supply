@@ -79,8 +79,8 @@ export const Customer = () => {
         <button
           type="button"
           className="btn btn-primary w-100"
-          onClick={doCustomerLogin}
-        // onClick={developmentMode}
+          // onClick={doCustomerLogin}
+          onClick={developmentMode}
         >
           <span>Login</span>
         </button>

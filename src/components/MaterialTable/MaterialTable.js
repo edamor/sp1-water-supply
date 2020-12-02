@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,34 +12,10 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem } from '@material-ui/core';
 
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Donut', 452, 25.0, 51, 4.9),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-//   createData('Honeycomb', 408, 3.2, 87, 6.5),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Jelly Bean', 375, 0.0, 94, 0.0),
-//   createData('KitKat', 518, 26.0, 65, 7.0),
-//   createData('Lollipop', 392, 0.2, 98, 0.0),
-//   createData('Marshmallow', 318, 0, 81, 2.0),
-//   createData('Nougat', 360, 19.0, 9, 37.0),
-//   createData('Oreo', 437, 18.0, 63, 4.0),
-// ];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -69,15 +43,9 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-// const headCells = [
-//   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-//   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-//   { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-//   { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-//   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-// ];
+
 const headCells = [
-  { id: 'billNumber', numeric: true, padding: 'checkbox', label: 'Bill No.' },
+  { id: 'billNumber', numeric: true, padding: 'none', label: 'Bill No.' },
   { id: 'periodFrom', numeric: true, padding: 'default', label: 'From (date)' },
   { id: 'periodTo', numeric: true, padding: 'default', label: 'To (date)' },
   { id: 'cumUsed', numeric: true, padding: 'default', label: 'Used (m³)' },
@@ -121,15 +89,6 @@ function EnhancedTableHead(props) {
   );
 }
 
-// EnhancedTableHead.propTypes = {
-//   classes: PropTypes.object.isRequired,
-//   numSelected: PropTypes.number.isRequired,
-//   onRequestSort: PropTypes.func.isRequired,
-//   // onSelectAllClick: PropTypes.func.isRequired,
-//   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-//   orderBy: PropTypes.string.isRequired,
-//   rowCount: PropTypes.number.isRequired,
-// };
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -153,14 +112,17 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const anchorRef = useRef(null);
+  const [open,setOpen] = React.useState(false)
+  // const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    anchorRef.current = event.currentTarget
+    setOpen(true)
   };
-
+  
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false)
   };
 
   const years = [
@@ -168,28 +130,31 @@ const EnhancedTableToolbar = (props) => {
     {name: "2019", value: 1546272000000}
   ];
 
+
   return (
     <Toolbar className={classes.root}>
       <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          My Bills
+          {`My Bills for ${props?.selectedYear.name}`}
         </Typography>
 
-       <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
+       
+          <IconButton ref={anchorRef} aria-label="filter list" aria-controls="filter-menu" aria-haspopup="true" onClick={handleClick}>
             <FilterListIcon />
           </IconButton>
           <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
+            id="filter-menu"
+            anchorEl={anchorRef.current}
+            open={open}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            {years.map(year => (
+              <MenuItem key={year.name} onClick={() => {
+                props.setSelectedYear(year);
+                handleClose();
+              }}> {year.name} </MenuItem>
+            ))}
           </Menu>
-        </Tooltip>
+          
       
     </Toolbar>
   );
@@ -225,21 +190,23 @@ export default function EnhancedTable({billArray, viewBill}) {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('billNumber');
-  const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const dense = true;
   const [rowsPerPage, setRowsPerPage] = React.useState(12);
   
-  const yearStep = 31556952000;
-  const [selectedYear, setSelectedYear] = React.useState(1577808000000)
+  const yearStep = 31536000000;
+  const [selectedYear, setSelectedYear] = React.useState({
+    name: "2020", value: 1577808000000
+  })
   const [rows, setRows] = React.useState(billArray
-    .filter(item => ((item.periodTo - selectedYear) < yearStep)))
+    .filter(item => ((item.periodTo - selectedYear.value) < yearStep)))
 
   
   
-
-  const handleFilterChange = (event) => {
-    setSelectedYear(event.target.value)
+  
+  const handleFilterChange = (year) => {
+    setSelectedYear(year);
+    setRows((e) => billArray.filter(item => ((item.periodTo - year.value) < yearStep)))
   };
 
 
@@ -260,18 +227,20 @@ export default function EnhancedTable({billArray, viewBill}) {
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
 
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
 
+
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar  />
+        <EnhancedTableToolbar
+          setSelectedYear={handleFilterChange}
+          selectedYear={selectedYear}
+        />
         <TableContainer>
           <Table
             className={classes.table}
@@ -287,20 +256,20 @@ export default function EnhancedTable({billArray, viewBill}) {
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              { rows.length > 0 ? stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const periodFrom = `${new Date(row.periodFrom).toDateString().substring(4,7)}. ${new Date(row.periodFrom).toDateString().substring(8,10)}`
                   const periodTo = `${new Date(row.periodTo).toDateString().substring(4,7)}. ${new Date(row.periodTo).toDateString().substring(8,10)}`
-
+                  
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => viewBill(row.id)}
+                      onClick={(event) => viewBill(row.billNumber)}
                       tabIndex={-1}
                       key={row.id}
                     >
-                      <TableCell component="th" scope="row" padding="checkbox">
+                      <TableCell component="th" scope="row" padding="default" align="right">
                         {row.billNumber}
                       </TableCell>
                       <TableCell align="right">{periodFrom}</TableCell>
@@ -308,13 +277,17 @@ export default function EnhancedTable({billArray, viewBill}) {
                       <TableCell align="right">{row.cumUsed}</TableCell>
                       <TableCell align="right">{row.totalAmountDue}</TableCell>
                       <TableCell align="right">
-                        <IconButton aria-label="View More" onClick={viewBill(row.billNumber)}>
+                        <IconButton aria-label="View More" onClick={() => viewBill(row.billNumber)}>
                           <MoreHorizIcon />
                         </IconButton>
                       </TableCell>
                     </TableRow>
                   );
-                })}
+                }) : <TableRow style={{ height: 72 }}>
+                        <TableCell colSpan={7} align="center" >
+                          <p className="font-xl text-center m-0 p-0">No Available Data</p>
+                        </TableCell>
+                      </TableRow>}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
                   <TableCell colSpan={7} />
@@ -333,10 +306,6 @@ export default function EnhancedTable({billArray, viewBill}) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </div>
   );
 }

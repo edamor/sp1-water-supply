@@ -1,13 +1,15 @@
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { BillListing } from "../../components/BillListing/BillListing";
 import Loader from "../../components/Loader/Loader";
+import EnhancedTable from "../../components/MaterialTable/MaterialTable";
 import { BillContext } from "../../contexts/BillContext";
 import { useFetch } from "../../hooks/useFetch";
 import { tokenParser } from "../../utils/TokenParser";
 
   
-
+const theme = createMuiTheme();
 
 
 export const Bills = () => {
@@ -42,10 +44,11 @@ export const Bills = () => {
       )
     } else {
       return (
-        <BillListing 
-          bills={res}  
-          viewBill={handle} 
-        />
+        <EnhancedTable billArray={res} viewBill={handle} />
+        // <BillListing 
+        //   bills={res}  
+        //   viewBill={handle} 
+        // />
       ) 
     }
 
@@ -54,16 +57,18 @@ export const Bills = () => {
 
 
   return (
-    <div className="container pt-2">
-      <p className="display-5 text-center py-3">
-          My Bills
-      </p>
-      <div className="row pt-2">
-        <div className="col-12 col-md-10 m-auto">
-          {showLoadingScreen(data,handleViewBill)}
+    <ThemeProvider theme={theme}>
+      <div className="container pt-2">
+        <p className="display-5 text-center py-3">
+            My Bills
+        </p>
+        <div className="row pt-2">
+          <div className="col-12 col-md-10 m-auto">
+            {showLoadingScreen(data,handleViewBill)}
+          </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 
