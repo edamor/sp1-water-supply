@@ -52,12 +52,12 @@ export const NewBillModal = ({payload, setPayload, setShowModal}) => {
 
 
  
-
+  const width = window.innerWidth;
 
 
   return (
     <div className="new-bill-modal">
-      <div className="modal-dialog modal-xl">
+      <div className="modal-dialog modal-xl modal-fullscreen-md-down">
         <div className="modal-content">
 
           <div className="modal-header d-flex flex-column">
@@ -124,7 +124,7 @@ export const NewBillModal = ({payload, setPayload, setShowModal}) => {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <p className="m-0 p-0 text-center ">Present</p>
+                  <p className="m-0 p-0 text-center font-weight-bold">Present</p>
                   <div className="row align-items-center justify-content-center ">
                     <div className="col-3 mr-1">
                       <div className="row align-items-center">
@@ -158,24 +158,24 @@ export const NewBillModal = ({payload, setPayload, setShowModal}) => {
                 <div className="col-12">
                   <p className="m-0 p-0 my-1 text-center font-xl font-weight-bold">Consumption</p>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-5">
                   <p className="m-0 p-0 text-center mb-1">Charges</p>
                   <div className="col-md-10 ml-auto font-l">
                     <p className="m-0 p-0 text-justify">
-                      0 to 10 Cu. Meters
+                      {`${(width < 768) ? "0-10m³" : "0 to 10 Cu. Meters (m³)"}`}
                     </p>
                     <p className="m-0 p-0 text-justify">
-                      In Excess of 10 Cu. Meters
+                      {`${(width < 768) ? "Above 10m³" : "In Excess of 10 Cu. Meters (m³)"}`}
                     </p>
 
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-7">
                   <p className="m-0 p-0 text-center mb-1">Rate</p>
                   <div className="row font-l">
                     <div className="col-12 d-flex justify-content-center">
                       <p className="m-0 p-0 text-right pr-3 col-6">
-                        Php
+                        {`${(width < 768) ? "P" : "Php"}`}
                       </p>
                       <p className="m-0 p-0 text-left col-6">
                         50.00
@@ -183,10 +183,10 @@ export const NewBillModal = ({payload, setPayload, setShowModal}) => {
                     </div>
                     <div className="col-12 d-flex justify-content-center">
                       <p className="m-0 p-0 text-right pr-3 col-6">
-                        Php
+                        {`${(width < 768) ? "P" : "Php"}`}
                       </p>
                       <p className="m-0 p-0 text-left col-6">
-                        11.00 / Cu. M
+                        {`${(width < 768) ? "11.00/m³" : "11.00 / Cu. M"}`}
                       </p>
                     </div>
                   </div>
@@ -292,7 +292,7 @@ export const NewBillModal = ({payload, setPayload, setShowModal}) => {
             </p>
             <button 
               type="button" 
-              className="btn btn-outline-secondary col-2" 
+              className="btn btn-outline-secondary col-md-2 col-4" 
               onClick={handleClose}
               disabled={isLoading}
             >

@@ -55,7 +55,7 @@ export const SubmitNewBillButton = ({
   return (
     <button 
       type="button" 
-      className="btn btn-success col-3"
+      className="btn btn-success col-md-3 col-8"
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       disabled={isLoading}
