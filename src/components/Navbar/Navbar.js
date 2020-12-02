@@ -72,14 +72,14 @@ export const Navbar = () => {
             if (item.name === "Accounts") {
               return (
                 <div className="nav-item dropdown" key={item.name}>
-                  <button type="button" className="btn btn-link nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
+                  <button type="button" className="btn btn-link nav-link dropdown-toggle " data-toggle="dropdown" aria-expanded="false" >
                     {item.name}
                   </button>
                     <div className="dropdown-menu">
                       {item.subMenu.map(subItem => (
                         <NavLink
                           key={subItem.name} 
-                          className="nav-link dropdown-item"
+                          className="nav-link dropdown-item "
                           activeClassName="active"
                           exact
                           to={subItem.to}
@@ -95,7 +95,7 @@ export const Navbar = () => {
               return (
                 <NavLink
                   key={item.name} 
-                  className="nav-link mx-2"
+                  className="nav-link "
                   activeClassName="active"
                   exact
                   to={item.to}
@@ -123,7 +123,7 @@ export const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav d-flex w-25 justify-content-around">
           <NavLink 
-            className="nav-link"
+            className="nav-link "
             activeClassName="active"
             exact
             to={customerHomeTo}
@@ -131,7 +131,7 @@ export const Navbar = () => {
             Account
           </NavLink>
           <NavLink 
-            className="nav-link"
+            className="nav-link "
             activeClassName="active"
             to={customerStatementsTo}
           >
@@ -158,9 +158,11 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-light">
       <div className="container-fluid">
-        <span className="mr-1 navbar-brand">Water</span>
-        <span className="mr-1 navbar-brand">Supply</span>
-        <span className="mr-1 navbar-brand">System</span>
+        <div>
+          <span className="mr-1 navbar-brand">Water</span>
+          <span className="mr-1 navbar-brand">Supply</span>
+          <span className="mr-1 navbar-brand">System</span>
+        </div>
         <button 
           className="navbar-toggler" 
           type="button" 

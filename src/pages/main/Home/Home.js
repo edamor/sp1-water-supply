@@ -55,6 +55,8 @@ export const Home = () => {
     }
   ]
 
+  const width = window.innerWidth;
+
   return (
       <div className="container">
         {
@@ -63,9 +65,9 @@ export const Home = () => {
           :
           <div>
             <div 
-              className="d-flex w-100 justify-content-around align-items-center my-3"
+              className="row d-flex w-100 justify-content-around align-items-center my-3"
               style={{
-                height: "70vh"
+                height: `${(width < 576) ? "100vh" : "75vh"}`
               }}
             >
               <div className="text-center col-md-4">

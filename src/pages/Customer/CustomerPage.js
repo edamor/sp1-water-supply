@@ -65,7 +65,7 @@ export const CustomerPage = () => {
         </dd>
         <div>
         <button
-          className="btn btn-success btn-lg w-25 mt-3"
+          className="btn btn-success btn-lg w-md-25 w-50 mt-3"
           type="button"
           onClick={() => {
             history.push({
@@ -93,7 +93,7 @@ export const CustomerPage = () => {
             My Account
           </p>
         </div>
-        <div className="col-12 col-md-4 d-flex align-items-center justify-content-end">
+        <div className="col-12 col-md-4 d-flex align-items-center justify-content-md-end">
           <p className="h5">
             Account No.: <span className="font-weight-lighter">{acctNumber}</span>
           </p>
