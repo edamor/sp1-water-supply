@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { AccountDetailsModal } from "../../../components/AccountDetailsModal/AccountDetailsModal";
 import { AccountsListing } from "../../../components/AccountsListing/AccountsListing"
 import Loader from "../../../components/Loader/Loader";
 import { PopupNotif } from "../../../components/PopupNotif/PopupNotif";
+import { useAccountsListContext } from "../../../contexts/AccountsListContext";
 import { useFetch } from "../../../hooks/useFetch";
 import { deleteAccountApi } from "../../../utils/AccountsApiMethods";
 
@@ -15,6 +16,14 @@ export const Accounts = () => {
     endpoint: API,
     token: TOKEN
   });
+
+  const { accountList, setAccountList } = useAccountsListContext();
+
+  useEffect(() => {
+    if (data) {
+      setAccountList(data)
+    }
+  }, [data, setAccountList])
 
   const history = useHistory();
   const {path} = useRouteMatch();
@@ -40,6 +49,7 @@ export const Accounts = () => {
         setDeletePopup({title: "Success", 
         message: `Account with Account No. ${accountNumber} has been deleted.`});
       }
+       setAccountList(accountList.filter(item => (item.accountNumber !== accountNumber)))
     })
     .catch(e => {
       console.log(e)
@@ -94,7 +104,7 @@ export const Accounts = () => {
           <div className="row pt-2">
             <div className="col-12 col-md-10 m-auto">
               <AccountsListing 
-                accounts={data} 
+                accounts={accountList} 
                 setShowModal={setShowModal} 
                 selectAccount={setViewAccount}
                 openPopup={openPopup}

@@ -54,7 +54,7 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount, openPopu
     }
   }
 
-
+  
 
   const width = window.innerWidth;
 
