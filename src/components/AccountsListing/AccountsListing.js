@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useTableSort } from "../../hooks/useTableSort";
-import { ArrowUp, ArrowDown } from "../../pages/main/Accounts/SvgIcons";
+import { ArrowUp, ArrowDown, TrashCan } from "../../pages/main/Accounts/SvgIcons";
 
-export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
+export const AccountsListing = ({accounts, setShowModal, selectAccount, openPopup}) => {
 
 
   const [sortBy, setSortBy] = useState("");
@@ -56,21 +56,18 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
 
 
 
-  // function handleNewBill(account) {
-  //   selectAccount(account);
-  //   setShowModal(true);
-  // }
+  const width = window.innerWidth;
 
 
   return (
     <table className="table table-hover table-striped w-100 align-middle" >
       <colgroup>
         <col style={{ width: "18%"}} />
-        <col style={{ width: "25%"}} />
+        <col style={{ width: "22%"}} />
         <col style={{ width: "15%"}} />
         <col style={{ width: "12.5%"}} />
         <col style={{ width: "12.5%"}} />
-        <col style={{ width: "17%"}} />
+        <col style={{ width: "20%"}} />
       </colgroup>
       <thead>
         <tr>
@@ -158,7 +155,7 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
                   new Date(item.lastBillPeriodTo).toDateString().substring(4,7)
                 }
               </td>
-              <td className="d-flex justify-content-center">
+              <td className="d-flex justify-content-around">
                 <button
                   type="button"
                   className="btn btn-sm btn-primary px-2"
@@ -167,7 +164,18 @@ export const AccountsListing = ({accounts, setShowModal, selectAccount}) => {
                     setShowModal(true);
                   }}
                 >
-                  View Details
+                  {`${width < 768 ? "View" : "View Details"}`}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger"
+                  onClick={() => {
+                    openPopup(item.accountNumber)
+                  }}
+                >
+                  <span>
+                    <TrashCan />
+                  </span>
                 </button>
               </td>
             </tr>
