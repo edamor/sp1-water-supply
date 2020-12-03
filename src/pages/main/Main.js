@@ -5,6 +5,7 @@ import { BillProvider } from "../../contexts/BillContext";
 import { CustomerDataProvider } from "../../contexts/CustomerDataContext";
 import { BillsPage } from "../BillsPage/BillsPage";
 import { CustomerPage } from "../Customer/CustomerPage";
+import { TestPage } from "../Test/TestPage";
 import { AccountsPage } from "./AccountsPage/AccountsPage";
 import { Home } from "./Home/Home";
 import { StatementsPage } from "./StatementsPage/StatementsPage";
@@ -39,6 +40,11 @@ export const Main = () => {
             <Route path="/admin/statements">
               <StatementsPage />
             </Route>
+            
+            <Route path="/admin/test">
+              <TestPage />
+            </Route>
+
           </Switch>
         )
         :

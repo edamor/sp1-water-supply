@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
 import { AccountDetailsModal } from "../../../components/AccountDetailsModal/AccountDetailsModal";
 import { AccountsListing } from "../../../components/AccountsListing/AccountsListing"
 import Loader from "../../../components/Loader/Loader";
@@ -25,8 +24,6 @@ export const Accounts = () => {
     }
   }, [data, setAccountList])
 
-  const history = useHistory();
-  const {path} = useRouteMatch();
 
   const [showModal, setShowModal] = useState(false);
   const [viewAccount, setViewAccount] = useState({});
@@ -66,7 +63,10 @@ export const Accounts = () => {
 
   function hidePopup() {
     setShowPopup(false);
-    history.replace(path);
+    setDeletePopup({
+      title: "Delete Account",
+      message: "Please be reminded that once deleted, all account information, including old statements, cannot be restored. \n\nPress 'Confirm' to continue."
+    });
   }
 
   
