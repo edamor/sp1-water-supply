@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { AccountDetailsModal } from "../../../components/AccountDetailsModal/AccountDetailsModal";
-import { AccountsListing } from "../../../components/AccountsListing/AccountsListing"
+import { DataTable } from "../../../components/DataTable/DataTable";
 import Loader from "../../../components/Loader/Loader";
 import { PopupNotif } from "../../../components/PopupNotif/PopupNotif";
 import { useAccountsListContext } from "../../../contexts/AccountsListContext";
 import { useFetch } from "../../../hooks/useFetch";
 import { deleteAccountApi } from "../../../utils/AccountsApiMethods";
+import { TrashCan } from "./SvgIcons";
 
 
 export const Accounts = () => {
@@ -28,10 +29,10 @@ export const Accounts = () => {
   const [showModal, setShowModal] = useState(false);
   const [viewAccount, setViewAccount] = useState({});
 
+
   const [showPopup, setShowPopup] = useState(false);
   const [deleteThis, setDeleteThis] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
-
   const [deletePopup, setDeletePopup] = useState({
     title: "Delete Account",
     message: "Please be reminded that once deleted, all account information, including old statements, cannot be restored. \n\nPress 'Confirm' to continue."
@@ -56,12 +57,8 @@ export const Accounts = () => {
     });
   };
 
-  function openPopup(acctNo) {
-    setShowPopup(true)
-    setDeleteThis(acctNo)
-  }
 
-  function hidePopup() {
+  function hideDeleteCallback() {
     setShowPopup(false);
     setDeletePopup({
       title: "Delete Account",
@@ -85,34 +82,124 @@ export const Accounts = () => {
   }
   
 
+  function viewAccountCallback(account) {
+    setShowModal(true);
+    setViewAccount(account)
+  };
+  function showDeleteCallback(account) {
+    setShowPopup(true)
+    setDeleteThis(account.accountNumber)
+  };
+
+  const columns = [
+    {
+      id: "accountNumber",
+      title: "Account No.",
+      width: "17",
+      className: "my-0 py-0"
+    },
+    {
+      id: "fullName",
+      title: "Name",
+      width: "22",
+      className: "my-0 py-0"
+    },
+    {
+      id: "address",
+      title: "Address",
+      width: "16",
+      className: "my-0 py-0"
+    },
+    {
+      id: "lastBillReading",
+      title: "Reading",
+      width: "13",
+      className: "my-0 py-0"
+    },
+    {
+      id: "lastBillPeriodTo",
+      title: "Month",
+      width: "13",
+      className: "my-0 py-0"
+    },
+    {
+      id: "actions",
+      title: "",
+      width: "19",
+      className: ""
+    },
+  ];
+
+  const rows = [
+    {
+      id: "accountNumber",
+      type: "string",
+      className: "",
+    },
+    {
+      id: "fullName",
+      type: "string",
+      className: "",
+    },
+    {
+      id: "address",
+      type: "barangay",
+      className: "",
+    },
+    {
+      id: "lastBillReading",
+      type: "number",
+      className: "",
+    },
+    {
+      id: "lastBillPeriodTo",
+      type: "longDate",
+      className: "",
+    },
+    {
+      id: "actions",
+      type: "action",
+      className: "text-center",
+      actions: [
+        {
+          label: `${window.innerWidth < 768 ? "View Details" : "View"}`,
+          className: "btn-primary px-2 mx-1",
+          callback: viewAccountCallback
+        },
+        {
+          label: <TrashCan />,
+          className: "btn-danger mx-1",
+          callback: showDeleteCallback
+        }
+      ]
+    }
+  ];
+
   
 
   return (
-    <>
-      <div className="container h-100">
-        {showConfirmation(deletePopup.title, deletePopup.message, hidePopup, handleDelete, deleteThis, deleteLoading)}
-        {showModal && <AccountDetailsModal account={viewAccount} setShowModal={setShowModal}  />}
-        <p className="display-5 text-center py-3">
-          Accounts
-        </p>
-        {
-          !data ?
-          <div className="row py-4 h-50">
-            <Loader />
+    <div className="container h-100">
+      {showConfirmation(deletePopup.title, deletePopup.message, hideDeleteCallback, handleDelete, deleteThis, deleteLoading)}
+      {showModal && <AccountDetailsModal account={viewAccount} setShowModal={setShowModal}  />}
+      <p className="display-5 text-center py-3">
+        Accounts
+      </p>
+      {
+        !data ||!accountList ?
+        <div className="row py-4 h-50">
+          <Loader />
+        </div>
+        :
+        <div className="row pt-2">
+          <div className="col-12 col-md-10 m-auto">
+            <DataTable 
+              columns={columns}
+              rows={rows}
+              data={accountList}
+            />
           </div>
-          :
-          <div className="row pt-2">
-            <div className="col-12 col-md-10 m-auto">
-              <AccountsListing 
-                accounts={accountList} 
-                setShowModal={setShowModal} 
-                selectAccount={setViewAccount}
-                openPopup={openPopup}
-              />
-            </div>
-          </div>
-        }
-      </div>
-    </>
+        </div>
+      }
+    </div>
   )
 }

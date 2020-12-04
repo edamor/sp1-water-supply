@@ -1,5 +1,5 @@
+import { DataTable } from "../../components/DataTable/DataTable";
 import Loader from "../../components/Loader/Loader";
-import { TestTable } from "../../components/TestTable/TestTable";
 import { useFetch } from "../../hooks/useFetch";
 import { TrashCan } from "../main/Accounts/SvgIcons";
 
@@ -26,7 +26,7 @@ export const TestPage = () => {
     {
       id: "accountNumber",
       title: "Account No.",
-      width: "18",
+      width: "17",
       className: "my-0 py-0"
     },
     {
@@ -38,25 +38,25 @@ export const TestPage = () => {
     {
       id: "address",
       title: "Address",
-      width: "15",
+      width: "16",
       className: "my-0 py-0"
     },
     {
       id: "lastBillReading",
       title: "Reading",
-      width: "12.5",
+      width: "13",
       className: "my-0 py-0"
     },
     {
       id: "lastBillPeriodTo",
       title: "Month",
-      width: "12.5",
+      width: "13",
       className: "my-0 py-0"
     },
     {
       id: "actions",
       title: "",
-      width: "20",
+      width: "19",
       className: ""
     },
   ];
@@ -80,12 +80,12 @@ export const TestPage = () => {
     {
       id: "lastBillReading",
       type: "number",
-      className: "text-center",
+      className: "",
     },
     {
       id: "lastBillPeriodTo",
       type: "longDate",
-      className: "text-center",
+      className: "",
     },
     {
       id: "actions",
@@ -93,7 +93,7 @@ export const TestPage = () => {
       className: "text-center",
       actions: [
         {
-          label: "View",
+          label: `${window.innerWidth < 768 ? "View Details" : "View"}`,
           className: "btn-primary px-2 mx-1",
           callback: viewAccountCallback
         },
@@ -120,7 +120,7 @@ export const TestPage = () => {
           :
           <div className="row pt-2">
             <div className="col-12 col-md-10 m-auto">
-              <TestTable 
+              <DataTable 
                 columns={columns}
                 rows={rows}
                 data={data}
