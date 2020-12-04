@@ -4,15 +4,7 @@ import { tokenParser } from "../../../utils/TokenParser";
 
 const ADMIN_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/admin/login";
 
-const devToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0YWRtaW4xIiwidXNlcklkIjo5MSwicm9sZSI6ImFkbWluIn0.MLD1gmEeHBsvPT0erjUZbo0P5akYmu5JAf_9elAR6vKho7A7tz_NM5be8kI1kbat8eyZOW4V9dvynbIbxqiV4Q";
-
 export const Admin = () => {
-
-  const developmentMode = () => {
-    localStorage.setItem("token", devToken);
-    localStorage.setItem("role", tokenParser(devToken).role);
-    history.push("/");
-  };
 
   let history = useHistory();
   
@@ -75,7 +67,6 @@ export const Admin = () => {
           type="button"
           className="btn btn-primary w-100"
           onClick={doAdminLogin}
-          // onClick={developmentMode}
         >
           <span>Login</span>
         </button>

@@ -21,10 +21,10 @@ export const PeriodSelectField = ({payload, setPayload, monthIndex}) => {
 
   return (
     <div className="row py-4">
-      <div className="col-md-4 d-flex flex-column justify-content-center">
-        <p className="h4">Select Statement Period:</p>
+      <div className="col-md-5 pt-1">
+        <p className="font-3xl text-right p-0 m-0">Select Statement Period:</p>
       </div>
-      <div className="col-md-8">
+      <div className="col-md-4 mr-auto">
         <select 
           className="form-select form-select-lg mb-3 " 
           aria-label="period select"

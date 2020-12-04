@@ -162,7 +162,7 @@ export const Accounts = () => {
       className: "text-center",
       actions: [
         {
-          label: `${window.innerWidth < 768 ? "View Details" : "View"}`,
+          label: `${window.innerWidth < 768 ? "View" : "View Details"}`,
           className: "btn-primary px-2 mx-1",
           callback: viewAccountCallback
         },

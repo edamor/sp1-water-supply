@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
+import { DataTable } from "../../../components/DataTable/DataTable";
 import Loader from "../../../components/Loader/Loader";
-import { ImportantNotes } from "../../../components/StatementComponents/ImportantNotes";
 import { NewBillModal } from "../../../components/StatementComponents/NewBillModal/NewBillModal";
 import { PeriodSelectField } from "../../../components/StatementComponents/PeriodSelectField";
-import { StatementsListing } from "../../../components/StatementsListing/StatementsListing";
 import { useAccountsForBillingContext } from "../../../contexts/AccountsForBillingContext";
 import { useBillingDate } from "../../../contexts/BillingDateContext";
 import { useFetch } from "../../../hooks/useFetch";
@@ -50,6 +49,72 @@ export const IssueStatements = () => {
     filter: payload.periodTo
   });
 
+
+  function issueStatementCallback(account) {
+    setPayload({
+      ...payload,
+      accountNumber: account.accountNumber
+    });
+    setShowModal(true);
+  }
+
+  const columns = [
+    {
+      id: "accountNumber",
+      title: "Account No.",
+      width: "25",
+      className: "my-0 py-0"
+    },
+    {
+      id: "fullName",
+      title: "Name",
+      width: "30",
+      className: "my-0 py-0"
+    },
+    {
+      id: "address",
+      title: "Barangay",
+      width: "25",
+      className: "my-0 py-0"
+    },
+    {
+      id: "actions",
+      title: "",
+      width: "20",
+      className: ""
+    },
+  ];
+
+  const rows = [
+    {
+      id: "accountNumber",
+      type: "string",
+      className: "",
+    },
+    {
+      id: "fullName",
+      type: "string",
+      className: "",
+    },
+    {
+      id: "address",
+      type: "barangay",
+      className: "",
+    },
+    {
+      id: "actions",
+      type: "action",
+      className: "text-center",
+      actions: [
+        {
+          label: `${window.innerWidth < 768 ? "Issue" : "Issue Statement"}`,
+          className: "btn-primary px-2 mx-1",
+          callback: issueStatementCallback
+        }
+      ]
+    }
+  ];
+
   
 
 
@@ -67,8 +132,6 @@ export const IssueStatements = () => {
         Issue Statements
       </p>
 
-      <ImportantNotes />
-
       <PeriodSelectField 
         payload={payload} 
         setPayload={setPayload}
@@ -79,11 +142,10 @@ export const IssueStatements = () => {
         !data ? 
         <Loader />
         :
-        <StatementsListing 
-          accounts={filteredArr} 
-          setShowModal={setShowModal}
-          payload={payload}
-          setPayload={setPayload}
+        <DataTable 
+          columns={columns}
+          rows={rows}
+          data={filteredArr}
         />
       }
       
