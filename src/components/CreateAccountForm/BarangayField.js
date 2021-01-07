@@ -28,6 +28,30 @@ export const BarangayField = ({values, setValues}) => {
       label: "Camili",
       value: "CAM"
     },
+    {
+      label: "San Isidro",
+      value: "SNI"
+    },
+    {
+      label: "San Roque",
+      value: "SNR"
+    },
+    {
+      label: "Tugdan",
+      value: "TUG"
+    },
+    {
+      label: "Calagonsao",
+      value: "CAL"
+    },
+    {
+      label: "Bonlao",
+      value: "BON"
+    },
+    {
+      label: "Comod-om",
+      value: "COM"
+    }
   ];
 
   const addressList = {
@@ -36,7 +60,13 @@ export const BarangayField = ({values, setValues}) => {
     MAD: "Madalag",
     BAG: "Bagsik",
     LAW: "Lawan",
-    CAM: "Camili"
+    CAM: "Camili",
+    SNI: "San Isidro",
+    SNR: "San Roque",
+    TUG: "Tugdan",
+    CAL: "Calagonsao",
+    BON: "Bonlao",
+    COM: "Comod-om",
   };
     
   
