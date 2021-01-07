@@ -10,98 +10,98 @@ export const BillingDateContextProvider = ({children}) => {
   const billingDates = [
     {
       label: "December 28 - January 28",
-      short: "12/28/19 - 01/28/20",
+      short: "12/28/20 - 01/28/21",
       value: {
-        periodFrom: 1577462400000,
-        periodTo: 1580140800000
+        periodFrom: 1609084800000,
+        periodTo: 1611763200000
       }
     },
     {
       label: "January 28 - February 28",
-      short: "01/28/20 - 02/28/20",
+      short: "01/28/21 - 02/28/21",
       value: {
-        periodFrom: 1580140800000,
-        periodTo: 1582819200000
+        periodFrom: 1611763200000,
+        periodTo: 1614441600000
       }
     },
     {
       label: "February 28 - March 28",
-      short: "02/28/20 - 03/28/20",
+      short: "02/28/21 - 03/28/21",
       value: {
-        periodFrom: 1582819200000,
-        periodTo: 1585324800000
+        periodFrom: 1614441600000,
+        periodTo: 1616860800000
       }
     },
     {
       label: "March 28 - April 28",
-      short: "03/28/20 - 04/28/20",
+      short: "03/28/21 - 04/28/21",
       value: {
-        periodFrom: 1585324800000,
-        periodTo: 1588003200000
+        periodFrom: 1616860800000,
+        periodTo: 1619539200000
       }
     },
     {
       label: "April 28 - May 28",
-      short: "04/28/20 - 05/28/20",
+      short: "04/28/21 - 05/28/21",
       value: {
-        periodFrom: 1588003200000,
-        periodTo: 1590595200000
+        periodFrom: 1619539200000,
+        periodTo: 1622131200000
       }
     },
     {
       label: "May 28 - June 28",
-      short: "05/28/20 - 06/28/20",
+      short: "05/28/21 - 06/28/21",
       value: {
-        periodFrom: 1590595200000,
-        periodTo: 1593273600000
+        periodFrom: 1622131200000,
+        periodTo: 1624809600000
       }
     },
     {
       label: "June 28 - July 28",
-      short: "06/28/20 - 07/28/20",
+      short: "06/28/21 - 07/28/21",
       value: {
-        periodFrom: 1593273600000,
-        periodTo: 1595865600000
+        periodFrom: 1624809600000,
+        periodTo: 1627401600000
       }
     },
     {
       label: "July 28 - August 28",
-      short: "07/28/20 - 08/28/20",
+      short: "07/28/21 - 08/28/21",
       value: {
-        periodFrom: 1595865600000,
-        periodTo: 1598544000000
+        periodFrom: 1627401600000,
+        periodTo: 1630080000000
       }
     },
     {
       label: "August 28 - September 28",
-      short: "08/28/20 - 09/28/20",
+      short: "08/28/21 - 09/28/21",
       value: {
-        periodFrom: 1598544000000,
-        periodTo: 1601222400000
+        periodFrom: 1630080000000,
+        periodTo: 1632758400000
       }
     },
     {
       label: "September 28 - October 28",
-      short: "09/28/20 - 10/28/20",
+      short: "09/28/21 - 10/28/21",
       value: {
-        periodFrom: 1601222400000,
-        periodTo: 1603814400000
+        periodFrom: 1632758400000,
+        periodTo: 1635350400000
       }
     },
     {
       label: "October 28 - November 28",
-      short: "10/28/20 - 11/28/20",
+      short: "10/28/21 - 11/28/21",
       value: {
-        periodFrom: 1603814400000,
-        periodTo: 1606492800000
+        periodFrom: 1635350400000,
+        periodTo: 1638028800000
       }
     },
     {
       label: "November 28 - December 28",
-      short: "11/28/20 - 12/28/20",
+      short: "11/28/21 - 12/28/21",
       value: {
-        periodFrom: 1606492800000,
-        periodTo: 1609084800000
+        periodFrom: 1638028800000,
+        periodTo: 1640620800000
       }
     }
   ];

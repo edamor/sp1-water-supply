@@ -23,7 +23,7 @@ export const IssueStatements = () => {
   const {accounts, setAccounts } = useAccountsForBillingContext();
 
 
-  const monthIndex = d.getMonth() - 1;
+  const monthIndex = d.getMonth() < 1 ? 0 : (d.getMonth() - 1);
   const months = useBillingDate();
   
   const [payload, setPayload] = useState({

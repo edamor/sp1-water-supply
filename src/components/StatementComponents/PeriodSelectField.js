@@ -33,7 +33,7 @@ export const PeriodSelectField = ({payload, setPayload, monthIndex}) => {
           onChange={handleChange}
         >
           {months && months.map((item, index) => (
-            (index > (monthIndex - 2)) &&
+            (index > (monthIndex - 2) && index < (monthIndex + 3)) &&
             <option
               key={index}
               value={index}
