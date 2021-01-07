@@ -14,7 +14,7 @@ export const DataTable = (props) => {
   const [orderBy, setOrderBy] = useState(data.length > 0 && Object.keys(data[0])[1]);
   const [direction, setDirection] = useState("asc");
   const [pagination, setPagination] = useState({
-    rowsPerPage: 5,
+    rowsPerPage: 10,
     pageNumber: 1
   });
 
