@@ -58,7 +58,7 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
                 <span className="font-weight-bold">Month Covered:</span>
                   {
                     account.lastBillPeriodTo === 0 ? "-" 
-                    : `${months[new Date(account.lastBillPeriodTo).getMonth()-1]} - ${months[new Date(account.lastBillPeriodTo).getMonth()]}`
+                    : `${months[new Date(account.lastBillPeriodTo).getMonth() === 0 ? 11 : new Date(account.lastBillPeriodTo).getMonth()-1]} - ${months[new Date(account.lastBillPeriodTo).getMonth()]}`
                   }
               </div>
               <div className="col-md-5 d-flex justify-content-between mr-auto">
