@@ -3,10 +3,14 @@ import "./style.css";
 
 export const PopupNotif = (props) => {
 
-  
+  function handleClickOutside(e) {
+    if (e.target.classList.contains("popup-notif-modal")) {
+      props.hide();
+    }
+  }
 
   return (
-    <div className="popup-notif-modal">
+    <div className="popup-notif-modal" onClick={handleClickOutside}>
       <div className="modal-dialog modal-sm modal-dialog-centered modal-fullscreen-md-down">
         <div className="modal-content">
           <div className="modal-header">

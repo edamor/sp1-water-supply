@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { PopupNotif } from "../../components/PopupNotif/PopupNotif";
 import { BillProvider } from "../../contexts/BillContext";
 import { CustomerDataProvider } from "../../contexts/CustomerDataContext";
 import { BillsPage } from "../BillsPage/BillsPage";
@@ -13,6 +14,7 @@ import { StatementsPage } from "./StatementsPage/StatementsPage";
 
 export const Main = () => {
 
+  const history = useHistory();
   let role = localStorage.getItem("role");
   let [isAdmin, setIsAdmin] = useState(false);
 
@@ -22,11 +24,24 @@ export const Main = () => {
     } else setIsAdmin(false);
   }, [role])
 
+  let [showConfirmModal, setShowConfirmModal] = useState(false);
+  const confirmModalProps = {
+    title: "Sign Out Confirmation",
+    hide: () => {setShowConfirmModal(false)},
+    loading: false,
+    message: "Are you sure you want to sign out?",
+    confirmAction: () => {
+      history.push("/login");
+      localStorage.clear();
+    }
+  }
+
 
   return (
     <div className="h-100 pt-5 my-3"
     >
-      <Navbar />
+      { showConfirmModal && <PopupNotif {...confirmModalProps} />}
+      <Navbar signOut={setShowConfirmModal} />
       {
         (isAdmin) ?
         (

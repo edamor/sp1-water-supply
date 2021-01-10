@@ -1,7 +1,7 @@
 import { NavLink, useHistory } from "react-router-dom";
 import "./style.css";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
 
   const history = useHistory();
 
@@ -53,15 +53,10 @@ export const Navbar = () => {
     state: { from: history.location} 
   };
 
-  // <NavLink
-  //   key={item.name} 
-  //   className="nav-link mx-2"
-  //   activeClassName="active"
-  //   exact
-  //   to={item.to}
-  // >
-  //   {item.name}
-  // </NavLink>
+
+  function handleSignOut() {
+    props.signOut(true);
+  }
 
 
   const showNav = (r) => (
@@ -121,10 +116,7 @@ export const Navbar = () => {
           <button
             type="button"
             className="btn btn-link sign-out-btn"
-            onClick={() => {
-              history.push("/login");
-              localStorage.clear();
-            }}
+            onClick={handleSignOut}
           >
             Sign Out
           </button>
@@ -153,10 +145,7 @@ export const Navbar = () => {
           <button
             type="button"
             className="btn btn-link sign-out-btn"
-            onClick={() => {
-              history.push("/login");
-              localStorage.clear();
-            }}
+            onClick={handleSignOut}
           >
             Sign Out
           </button>

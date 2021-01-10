@@ -51,8 +51,8 @@ export const BillListing = ({bills, viewBill}) => {
       </thead>
       <tbody>
         {
-          (results.length !== 0) ? results.map(item => (
-            <tr key={item.billNumber}>
+          (results.length !== 0) ? results.map((item, index) => (
+            <tr key={index}>
               <th scope="row">
                 {item.billNumber}
               </th>
