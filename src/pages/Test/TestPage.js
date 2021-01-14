@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Loader from "../../components/Loader/Loader";
 
 
 
@@ -28,8 +27,9 @@ export const TestPage = () => {
 					let url = window.URL.createObjectURL(blob);
 					let a = document.createElement('a');
 					a.href = url;
-					a.download = 'accounts.xlsx';
-					a.click();
+					a.download = response.headers.get("Content-Disposition").split("=")[1] || "AllAccounts.xlsx";
+        
+        	a.click();
           setLoading(false)
           setLoadingBtn({...loadingBtn, accounts: false})
 				});
@@ -53,7 +53,7 @@ export const TestPage = () => {
 					let url = window.URL.createObjectURL(blob);
 					let a = document.createElement('a');
 					a.href = url;
-					a.download = 'statements.xlsx';
+					a.download = response.headers.get("Content-Disposition").split("=")[1] || "Statements.xlsx";
 					a.click();
           setLoading(false)
       setLoadingBtn({...loadingBtn, statements: false})
@@ -67,7 +67,6 @@ export const TestPage = () => {
     })
   }
 
-  console.log(loadingBtn);
 
   return (
     <div className="container h-100">
