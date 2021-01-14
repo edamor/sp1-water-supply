@@ -31,7 +31,8 @@ export const IssueStatements = () => {
      periodFrom: months[monthIndex].value.periodFrom,
      periodTo: months[monthIndex].value.periodTo,
      readingPresent: 0,
-     chargeOthers: 0
+     chargeOthers: 0,
+     issuedBy: 102
   })
   
   const [showModal, setShowModal] = useState(false);
