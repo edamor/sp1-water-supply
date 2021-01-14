@@ -7,7 +7,7 @@ export const NewOrExistingField = ({values, setValues}) => {
   return (
     <div className="col-md-12">
       <p className="form-check-label text-center font-weight-bold">
-        Select if Account is New or Existing
+        Type of Account
       </p>
       <div className="col-md-12 d-flex justify-content-center">
         <div className="form-check form-check-inline mx-5">
