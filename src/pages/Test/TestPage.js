@@ -1,133 +1,78 @@
-import { DataTable } from "../../components/DataTable/DataTable";
-import Loader from "../../components/Loader/Loader";
-import { useFetch } from "../../hooks/useFetch";
-import { TrashCan } from "../main/Accounts/SvgIcons";
+import { useState } from "react";
 
 
 
 
 export const TestPage = () => {
-
   const TOKEN = localStorage.getItem("token");
-  const API = `/account-management/accounts`;
-  const { data } = useFetch({
-    endpoint: API,
-    token: TOKEN
-  });
-
-  function viewAccountCallback(account) {
-    console.log(account)
-  };
-  function deleteAccountCallback(account) {
-    console.log(account)
-  };
-
-  const columns = [
-    {
-      id: "accountNumber",
-      title: "Account No.",
-      width: "17",
-      className: "my-0 py-0"
-    },
-    {
-      id: "fullName",
-      title: "Name",
-      width: "22",
-      className: "my-0 py-0"
-    },
-    {
-      id: "address",
-      title: "Address",
-      width: "16",
-      className: "my-0 py-0"
-    },
-    {
-      id: "lastBillReading",
-      title: "Reading",
-      width: "13",
-      className: "my-0 py-0"
-    },
-    {
-      id: "lastBillPeriodTo",
-      title: "Month",
-      width: "13",
-      className: "my-0 py-0"
-    },
-    {
-      id: "actions",
-      title: "",
-      width: "19",
-      className: ""
-    },
-  ];
-
-  const rows = [
-    {
-      id: "accountNumber",
-      type: "string",
-      className: "",
-    },
-    {
-      id: "fullName",
-      type: "string",
-      className: "",
-    },
-    {
-      id: "address",
-      type: "barangay",
-      className: "",
-    },
-    {
-      id: "lastBillReading",
-      type: "number",
-      className: "",
-    },
-    {
-      id: "lastBillPeriodTo",
-      type: "longDate",
-      className: "",
-    },
-    {
-      id: "actions",
-      type: "action",
-      className: "text-center",
-      actions: [
-        {
-          label: `${window.innerWidth < 768 ? "View Details" : "View"}`,
-          className: "btn-primary px-2 mx-1",
-          callback: viewAccountCallback
-        },
-        {
-          label: <TrashCan />,
-          className: "btn-danger mx-1",
-          callback: deleteAccountCallback
-        }
-      ]
-    }
-  ];
+  const [selectedMonth, setSelectedMonth] = useState(0);
   
+  
+  function downloadAccounts() {
+
+    const URI = "https://sp1-blue-sparrow.herokuapp.com"
+    const endpoint = "/api/v1/reports-management/export/accounts/all"
+
+    fetch(URI + endpoint, {
+      method: "GET",
+      headers: { "x-auth-token": TOKEN }
+    })
+    .then(response => {
+				response.blob().then(blob => {
+					let url = window.URL.createObjectURL(blob);
+					let a = document.createElement('a');
+					a.href = url;
+					a.download = 'accounts.xlsx';
+					a.click();
+				});
+		})
+  }
+
 
   return (
     <div className="container h-100">
       <p className="display-5 text-center py-3">
-        Testing Page
+        Reports
       </p>
-        {
-          !data ?
-          <div className="row py-4 h-50">
-            <Loader />
-          </div>
-          :
-          <div className="row pt-2">
-            <div className="col-12 col-md-10 m-auto">
-              <DataTable 
-                columns={columns}
-                rows={rows}
-                data={data}
-              />
-            </div>
-          </div>
-        }
+      <div>
+        <ul>
+          <li>
+            Download All Accounts to Excel
+            <button
+              className="btn btn-primary mx-3"
+              onClick={downloadAccounts}
+            >
+              Download
+            </button>
+          </li>
+          <li>
+            Download Statement of Accounts. Select a month to download.
+            <select
+              className="form-select"
+              defaultChecked={true}
+              onChange={e => {
+                setSelectedMonth(e.target.value)
+              }}
+            >
+              <option value={0} >January</option>
+              <option value={1} >February</option>
+              <option value={2} >March</option>
+              <option value={3} >April</option>
+              <option value={4} >May</option>
+              <option value={5} >June</option>
+              <option value={6} >July</option>
+              <option value={7} >August</option>
+              <option value={8} >September</option>
+              <option value={9} >October</option>
+              <option value={10} >November</option>
+              <option value={11} >December</option>
+            </select>
+            <button>
+              Download
+            </button>
+          </li>
+        </ul>
+      </div>
       </div>
   )
 }

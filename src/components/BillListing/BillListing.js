@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 
 
 export const BillListing = ({bills, viewBill}) => {
-
+  
   let yearStep = 31556952000;
-  const years = [
+  const years = [ 
+    {name: "2021", value: 1609364952000},
     {name: "2020", value: 1577808000000},
     {name: "2019", value: 1546272000000}
   ]
 
 
 
-  let [selectedYear, setSelectedYear] = useState(1577808000000)
+  let [selectedYear, setSelectedYear] = useState(1609364952000)
   let [results, setResults] = useState(bills
     .sort((a,b) => b.billNumber - a.billNumber)
     .filter(item => ((item.periodTo - selectedYear) < yearStep)))

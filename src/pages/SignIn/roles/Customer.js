@@ -4,6 +4,7 @@ import { UserContext } from "../../../contexts/UserContext";
 import { tokenParser } from "../../../utils/TokenParser";
 
 const CUSTOMER_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/customer/login";
+const LOCAL ="http://localhost:8080/auth/customer/login";
 
 const DEV_TOKEN="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMDIwLTAwLTAxIiwicm9sZSI6ImN1c3RvbWVyIiwiYWNjb3VudE5vIjoiMjAyMC0wMC0wMSIsImFjY291bnQiOnsiaWQiOjkxLCJhY2NvdW50TnVtYmVyIjoiMjAyMC0wMC0wMSIsImZ1bGxOYW1lIjoiSm9obiBDcnV6IiwibW9iaWxlTnVtYmVyIjoiKzYzOTE3NTAzNzQ1NyIsImFkZHJlc3MiOiJQb2JsYWNpb24sIEFsY2FudGFyYSwgUm9tYmxvbiIsImJhcmFuZ2F5IjoiUE9CIiwibGFzdEJpbGxOdW1iZXIiOjIsImxhc3RCaWxsUmVhZGluZyI6MTIsImxhc3RCaWxsUGVyaW9kVG8iOjE2MDY0OTI4MDAwMDAsIm1ldGVyU2VyaWFsTnVtYmVyIjoiMTFBMSAxMDAxIiwiZXhpc3RpbmciOmZhbHNlfX0.mV0ZxSER4xv7f8p561NiET3TUywhI7QdsJgqopAvq8lv62JUsJcg4UDAfrk3QafdhHLek9Kq-OBPOOnXTRnaOQ"
 

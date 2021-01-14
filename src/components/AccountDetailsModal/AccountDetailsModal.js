@@ -1,4 +1,4 @@
-import { useConsumptionAmount } from "../../hooks/useConsumptionAmount";
+import { BillSection } from "./BillSection";
 import "./style.css"
 
 
@@ -8,13 +8,12 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
     setShowModal(false)
   }
 
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-  const {total} = useConsumptionAmount(account.lastBillReading);
+  console.log(account);
+  
 
   return (
     <div className="account-details-modal">
-      <div className="modal-dialog modal-dialog-centered modal-lg">
+      <div className="modal-dialog modal-lg details-modal">
         <div className="modal-content">
           <div className="modal-header">
             <p className="modal-title h4" id="account-details-modal">
@@ -29,7 +28,6 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
           </div>
           <div className="modal-body p-4">
             <div className="row g-4">
-              <div className="col-10 h4 font-weight-normal">Account Information</div>
               <div className="col-md-5 d-flex justify-content-between mr-auto">
                 <span className="font-weight-bold">Full Name:</span>
                 <span>{account.fullName}</span> 
@@ -42,7 +40,7 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
                 <span className="font-weight-bold">Mobile No.: </span>
                 <span>
                   {
-                    `${account.mobileNumber.substring(0,3)} ${account.mobileNumber.substring(3,6)}-${account.mobileNumber.substring(6,9)}-${account.mobileNumber.substring(9)}`
+                    `0${account.mobileNumber.substring(3,6)}-${account.mobileNumber.substring(6,9)}-${account.mobileNumber.substring(9)}`
                   }
                 </span>
               </div>
@@ -52,7 +50,12 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
               </div>
             </div>
             <hr className="my-4" />
-            <div className="row g-4">
+
+            <BillSection 
+              account={account}
+            />
+            
+            {/* <div className="row g-4">
               <div className="col-6 h5">Previous Statement Summary</div>
               <div className="col-md-5 d-flex justify-content-between ml-auto">
                 <span className="font-weight-bold">Month Covered:</span>
@@ -73,7 +76,7 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
                   {account.lastBillReading === 0 ? "-" : `${account.lastBillReading} Cu. Meters`}
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="modal-footer">
             <button 

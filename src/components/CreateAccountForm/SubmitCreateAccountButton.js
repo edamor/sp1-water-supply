@@ -32,8 +32,10 @@ export const SubmitCreateAccountButton = (
         setLoading(false);
         if (data === "Success") {
           setShowModal(true);
+        } else if (data === "Account Number Already Taken") {
+          setErrors({...errors, accountNumber: data})
         } else {
-          setErrors({...errors, accountNumber: "Account Number already taken"})
+          setErrors({...errors, meterSerialNumber: data})
         }
       })
       .catch(e => {

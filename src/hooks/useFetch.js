@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 
 const DOMAIN = "https://sp1-blue-sparrow.herokuapp.com/api/v1";
+const LOCAL = "http://localhost:8080/api/v1";
+
 
 export const useFetch = ({endpoint, token}) => {
   const [state, setState] = useState({data: null, loading: true});
@@ -26,6 +28,18 @@ export const useFetch = ({endpoint, token}) => {
     .catch(e => {
       alert(e)
     })
+    // fetch(DOMAIN + endpoint, {
+    //   method: "GET",
+    //   headers: { "x-auth-token": token },
+    //   signal
+    // })
+    // .then(response => response.text())
+    // .then(x => {
+    //   setState({data: JSON.parse(x), loading: false});
+    // })
+    // .catch(e => {
+    //   alert(e)
+    // })
 
     return () => controllerRef.current.abort();
   }, [endpoint, token]);

@@ -56,7 +56,7 @@ export const Main = () => {
               <StatementsPage />
             </Route>
             
-            <Route path="/admin/test">
+            <Route path="/admin/reports">
               <TestPage />
             </Route>
 

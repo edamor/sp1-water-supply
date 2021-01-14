@@ -11,7 +11,7 @@ import { TrashCan } from "./SvgIcons";
 
 export const Accounts = () => {
   const TOKEN = localStorage.getItem("token");
-  const API = `/account-management/accounts`;
+  const API = `/account-management/accounts/bills/all`;
   const { data } = useFetch({
     endpoint: API,
     token: TOKEN
@@ -100,26 +100,14 @@ export const Accounts = () => {
     },
     {
       id: "fullName",
-      title: "Name",
+      title: "Full Name",
       width: "22",
       className: "my-0 py-0"
     },
     {
       id: "address",
-      title: "Address",
+      title: "Barangay",
       width: "16",
-      className: "my-0 py-0"
-    },
-    {
-      id: "lastBillReading",
-      title: "Reading",
-      width: "13",
-      className: "my-0 py-0"
-    },
-    {
-      id: "lastBillPeriodTo",
-      title: "Month",
-      width: "13",
       className: "my-0 py-0"
     },
     {
@@ -147,16 +135,6 @@ export const Accounts = () => {
       className: "",
     },
     {
-      id: "lastBillReading",
-      type: "number",
-      className: "",
-    },
-    {
-      id: "lastBillPeriodTo",
-      type: "longDate",
-      className: "",
-    },
-    {
       id: "actions",
       type: "action",
       className: "text-center",
@@ -168,7 +146,7 @@ export const Accounts = () => {
         },
         {
           label: <TrashCan />,
-          className: "btn-danger mx-1",
+          className: "btn-danger m-2 text-center",
           callback: showDeleteCallback
         }
       ]

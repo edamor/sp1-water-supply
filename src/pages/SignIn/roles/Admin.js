@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { tokenParser } from "../../../utils/TokenParser";
 
 const ADMIN_LOGIN_URI="https://sp1-blue-sparrow.herokuapp.com/auth/admin/login";
+const LOCAL="http://localhost:8080/auth/admin/login";
 
 export const Admin = () => {
 

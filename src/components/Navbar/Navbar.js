@@ -100,17 +100,17 @@ export const Navbar = (props) => {
               )
             }
           })}
-          {/* <NavLink
+          <NavLink
             className="nav-link "
             activeClassName="active"
             exact
             to={{
-              pathname: "/admin/test",
+              pathname: "/admin/reports",
               state: { from: history.location} 
             }}
           >
-            Test
-          </NavLink>     */}
+            Reports
+          </NavLink>    
         </div>
         <div className="d-flex w-100 w-md-75 justify-content-md-end justify-content-center">
           <button
