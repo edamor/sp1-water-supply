@@ -67,13 +67,6 @@ export const Customer = () => {
   };
 
 
-  const developmentMode = () => {
-    localStorage.setItem("token", DEV_TOKEN);
-    localStorage.setItem("role", tokenParser(DEV_TOKEN).role);
-    setActiveUser(tokenParser(DEV_TOKEN).account);
-    history.push("/");
-  };
-
   const loadingButton = () => {
     if (!loading) {
       return (
@@ -81,7 +74,6 @@ export const Customer = () => {
           type="button"
           className="btn btn-primary w-100"
           onClick={doCustomerLogin}
-        // onClick={developmentMode}
         >
           <span>Login</span>
         </button>

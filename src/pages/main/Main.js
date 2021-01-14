@@ -38,7 +38,9 @@ export const Main = () => {
 
 
   return (
-    <div className="h-100 pt-5 my-3"
+    <div 
+      className="h-100 pt-5 my-3"
+      style={{ maxWidth: "1200px", margin: "0 auto"}}
     >
       { showConfirmModal && <PopupNotif {...confirmModalProps} />}
       <Navbar signOut={setShowConfirmModal} />

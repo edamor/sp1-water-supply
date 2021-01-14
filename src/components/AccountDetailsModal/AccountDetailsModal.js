@@ -55,33 +55,12 @@ export const AccountDetailsModal = ({account, setShowModal}) => {
               account={account}
             />
             
-            {/* <div className="row g-4">
-              <div className="col-6 h5">Previous Statement Summary</div>
-              <div className="col-md-5 d-flex justify-content-between ml-auto">
-                <span className="font-weight-bold">Month Covered:</span>
-                  {
-                    account.lastBillPeriodTo === 0 ? "-" 
-                    : `${months[new Date(account.lastBillPeriodTo).getMonth() === 0 ? 11 : new Date(account.lastBillPeriodTo).getMonth()-1]} - ${months[new Date(account.lastBillPeriodTo).getMonth()]}`
-                  }
-              </div>
-              <div className="col-md-5 d-flex justify-content-between mr-auto">
-                <span className="font-weight-bold">Amount Due: </span>
-                <span>
-                  {account.lastBillReading === 0 ? "-" : `Php ${total}.00`}
-                </span>
-              </div>
-              <div className="col-md-5 d-flex justify-content-between">
-                <span className="font-weight-bold">Meter Reading: </span>
-                <span> 
-                  {account.lastBillReading === 0 ? "-" : `${account.lastBillReading} Cu. Meters`}
-                </span>
-              </div>
-            </div> */}
           </div>
           <div className="modal-footer">
             <button 
               type="button" 
-              className="btn btn-secondary" 
+              className="btn btn-secondary"
+              style={{ width: "180px"}} 
               onClick={handleClose}
             >
               Close

@@ -30,16 +30,15 @@ export const SelectedBill = (props) => {
       <div className="col-md-5 d-flex flex-column">
         <BillDetail 
           name="Present Reading"
-          value={readingPresent}
+          value={readingPresent && readingPresent+"\u33a5"}
         />
         <BillDetail 
           name="Previous Reading"
-          value={readingPrevious}
+          value={readingPrevious && readingPrevious+"\u33a5"}
         />
         <BillDetail 
           name={"Used"}
-          // value={cumUsed + "\u33a5"}
-          value={cumUsed}
+          value={cumUsed && cumUsed+"\u33a5"}
         />
       </div>
 
